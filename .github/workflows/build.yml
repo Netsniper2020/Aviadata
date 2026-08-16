@@ -10,47 +10,65 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Connect IQ SDK
-        run: |
-          sudo apt-get update && sudo apt-get install -y unzip wget openjdk-17-jdk libsecret-1-dev libglib2.0-dev libwebkit2gtk-4.1-dev libgtk-3-dev libjavascriptcoregtk-4.1-dev libsoup-3.0-dev
-          # SDK manager needs libwebkit2gtk-4.0 but Ubuntu 24.04 only has 4.1 — symlink
-          sudo ln -sf /usr/lib/x86_64-linux-gnu/libwebkit2gtk-4.1.so.0 /usr/lib/x86_64-linux-gnu/libwebkit2gtk-4.0.so.37
-          sudo ln -sf /usr/lib/x86_64-linux-gnu/libjavascriptcoregtk-4.1.so.0 /usr/lib/x86_64-linux-gnu/libjavascriptcoregtk-4.0.so.18
-          sudo ln -sf /usr/lib/x86_64-linux-gnu/libsoup-3.0.so.0 /usr/lib/x86_64-linux-gnu/libsoup-2.4.so.1
-          wget -q https://developer.garmin.com/downloads/connect-iq/sdk-manager/connectiq-sdk-manager-linux.zip -O /tmp/sdkmanager.zip
-          mkdir -p $HOME/ciq-manager
-          unzip -q /tmp/sdkmanager.zip -d $HOME/ciq-manager
-          chmod +x $HOME/ciq-manager/bin/sdkmanager
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
 
-      - name: Download SDK and device files
+      - name: Install connect-iq-sdk-manager-cli
         run: |
-          export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-          $HOME/ciq-manager/bin/sdkmanager login <<< "${{ secrets.GARMIN_USERNAME }}
-          ${{ secrets.GARMIN_PASSWORD }}"
-          $HOME/ciq-manager/bin/sdkmanager download-sdk 9.2.0
-          $HOME/ciq-manager/bin/sdkmanager download-device d2airx10 3.00
+          curl -s https://raw.githubusercontent.com/lindell/connect-iq-sdk-manager-cli/master/install.sh | sudo sh -s -- -b /usr/local/bin
 
-      - name: Set up developer key
+      - name: Accept license & login
+        env:
+          GARMIN_USERNAME: ${{ secrets.GARMIN_USERNAME }}
+          GARMIN_PASSWORD: ${{ secrets.GARMIN_PASSWORD }}
+        run: |
+          connect-iq-sdk-manager agreement accept
+          connect-iq-sdk-manager login
+
+      - name: Install SDK
+        run: |
+          connect-iq-sdk-manager sdk set 9.2.0
+          echo "$(connect-iq-sdk-manager sdk current-path --bin)" >> $GITHUB_PATH
+
+      - name: Download device files
+        run: |
+          connect-iq-sdk-manager device download --manifest=manifest.xml
+
+      - name: Setup developer key
         run: |
           echo "${{ secrets.GARMIN_DEV_KEY }}" | base64 -d > /tmp/developer_key.der
 
-      - name: Build
+      - name: Compile PRG
         run: |
-          export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-          SDK_PATH=$(find $HOME/.Garmin/ConnectIQ/Sdks -maxdepth 1 -type d -name 'connectiq-sdk*' | head -1)
-          export PATH="$SDK_PATH/bin:$PATH"
           mkdir -p bin
-          monkeyc -o bin/AviData.prg \
-            -f monkey.jungle \
-            -y /tmp/developer_key.der \
+          monkeyc \
             -d d2airx10 \
+            -f monkey.jungle \
+            -o bin/AviData.prg \
+            -y /tmp/developer_key.der \
             -w
+
+      - name: Package IQ (store/beta)
+        continue-on-error: true
+        run: |
+          monkeyc -e \
+            -o bin/AviData.iq \
+            -f monkey.jungle \
+            -y /tmp/developer_key.der -w
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: AviData-prg
-          path: bin/AviData.prg
+          name: AviData-build
+          path: |
+            bin/AviData.prg
+            bin/AviData.iq
+          if-no-files-found: error
+          retention-days: 30
