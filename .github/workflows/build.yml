@@ -25,9 +25,8 @@ jobs:
           export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
           $HOME/ciq-manager/bin/sdkmanager login <<< "${{ secrets.GARMIN_USERNAME }}
           ${{ secrets.GARMIN_PASSWORD }}"
-          $HOME/ciq-manager/bin/sdkmanager download-sdk 7.4.3
-          $HOME/ciq-manager/bin/sdkmanager download-device fenix7 5.00
-          $HOME/ciq-manager/bin/sdkmanager download-device fr965 3.00
+          $HOME/ciq-manager/bin/sdkmanager download-sdk 9.2.0
+          $HOME/ciq-manager/bin/sdkmanager download-device d2airx10 3.00
 
       - name: Set up developer key
         run: |
@@ -38,10 +37,11 @@ jobs:
           export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
           SDK_PATH=$(find $HOME/.Garmin/ConnectIQ/Sdks -maxdepth 1 -type d -name 'connectiq-sdk*' | head -1)
           export PATH="$SDK_PATH/bin:$PATH"
+          mkdir -p bin
           monkeyc -o bin/AviData.prg \
             -f monkey.jungle \
             -y /tmp/developer_key.der \
-            -d fenix7 \
+            -d d2airx10 \
             -w
 
       - name: Upload artifact
