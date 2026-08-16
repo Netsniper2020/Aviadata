@@ -1,6 +1,7 @@
 using Toybox.WatchUi as Ui;
 using Toybox.Graphics as Gfx;
 using Toybox.Application.Properties;
+using Toybox.System;
 
 class QnhInputView extends Ui.View {
     var _qnh = 1013;
@@ -19,27 +20,21 @@ class QnhInputView extends Ui.View {
         var cx = dc.getWidth() / 2;
         var cy = dc.getHeight() / 2;
 
-        // Title
         dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT);
         dc.drawText(cx, cy - 80, Gfx.FONT_SMALL, "QNH (hPa)", Gfx.TEXT_JUSTIFY_CENTER);
 
-        // Value
         dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
         dc.drawText(cx, cy - 30, Gfx.FONT_NUMBER_MILD, _qnh.toString(), Gfx.TEXT_JUSTIFY_CENTER);
 
-        // + button area
         dc.setColor(Gfx.COLOR_GREEN, Gfx.COLOR_TRANSPARENT);
         dc.drawText(cx + 70, cy - 30, Gfx.FONT_LARGE, "+", Gfx.TEXT_JUSTIFY_CENTER);
 
-        // - button area
         dc.setColor(Gfx.COLOR_RED, Gfx.COLOR_TRANSPARENT);
         dc.drawText(cx - 70, cy - 30, Gfx.FONT_LARGE, "-", Gfx.TEXT_JUSTIFY_CENTER);
 
-        // Standard reference
         dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
         dc.drawText(cx, cy + 40, Gfx.FONT_XTINY, "STD: 1013", Gfx.TEXT_JUSTIFY_CENTER);
 
-        // Instructions
         dc.setColor(Gfx.COLOR_LT_GRAY, Gfx.COLOR_TRANSPARENT);
         dc.drawText(cx, cy + 65, Gfx.FONT_XTINY, "Tap +/- | Swipe: \u00B110", Gfx.TEXT_JUSTIFY_CENTER);
         dc.drawText(cx, cy + 85, Gfx.FONT_XTINY, "Back = valider", Gfx.TEXT_JUSTIFY_CENTER);
@@ -53,11 +48,8 @@ class QnhInputView extends Ui.View {
     }
 
     function saveAndClose() {
-        // Save to properties
         Properties.setValue("qnhValue", _qnh);
-        // Update page view
         _pageView.qnhHpa = _qnh;
-        // Pop this view
         Ui.popView(Ui.SLIDE_DOWN);
     }
 }
@@ -74,13 +66,11 @@ class QnhInputDelegate extends Ui.BehaviorDelegate {
 
     function onTap(clickEvent) {
         var coords = clickEvent.getCoordinates();
-        var tapX = coords[0];
         var cx = System.getDeviceSettings().screenWidth / 2;
-
-        if (tapX > cx + 30) {
+        if (coords[0] > cx + 30) {
             _qnhView.adjustQnh(1);
             return true;
-        } else if (tapX < cx - 30) {
+        } else if (coords[0] < cx - 30) {
             _qnhView.adjustQnh(-1);
             return true;
         }

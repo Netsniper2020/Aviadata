@@ -12,17 +12,15 @@ class PageView extends Ui.View {
     var currentPage = 0;
     var totalPages = 1;
 
+    // pageSlots[page][quad] = dfType (DF_NONE if empty)
     var pageSlots = null;
-    var topSlot = -1;
-    var botSlot = -1;
+    var topSlot = 0;   // DF_NONE
+    var botSlot = 0;
 
     var qnhHpa = 1013;
     var showTrackTop = true;
 
-    // 1-second refresh timer
     var _timer = null;
-
-    // Cached quadrant centers for tap detection [page][quad] = [x, y]
     var _quadCenters = null;
     var _quadHalfW = 0;
     var _quadHalfH = 0;
@@ -31,13 +29,12 @@ class PageView extends Ui.View {
         View.initialize();
         pageSlots = new [MAX_PAGES];
         for (var p = 0; p < MAX_PAGES; p++) {
-            pageSlots[p] = [-1, -1, -1, -1];
+            pageSlots[p] = [DF_NONE, DF_NONE, DF_NONE, DF_NONE];
         }
         loadSettings();
     }
 
     function onShow() {
-        // Start 1-second timer for live seconds display
         if (_timer == null) {
             _timer = new Timer.Timer();
         }
@@ -45,9 +42,7 @@ class PageView extends Ui.View {
     }
 
     function onHide() {
-        if (_timer != null) {
-            _timer.stop();
-        }
+        if (_timer != null) { _timer.stop(); }
     }
 
     function onTick() as Void {
@@ -58,37 +53,21 @@ class PageView extends Ui.View {
         qnhHpa = readPropNum("qnhValue", 1013);
         showTrackTop = readPropBool("showTrackTop", true);
 
-        for (var p = 0; p < MAX_PAGES; p++) {
-            pageSlots[p] = [-1, -1, -1, -1];
+        // Read slot assignments: first 16 are page quadrants, 17=TOP, 18=BOT
+        for (var i = 0; i < 16; i++) {
+            var page = i / 4;
+            var quad = i % 4;
+            pageSlots[page][quad] = readPropNum(SLOT_KEYS[i], DF_NONE);
         }
-        topSlot = -1;
-        botSlot = -1;
+        topSlot = readPropNum(SLOT_KEYS[16], DF_NONE);
+        botSlot = readPropNum(SLOT_KEYS[17], DF_NONE);
 
-        for (var df = 0; df < DF_COUNT; df++) {
-            var posVal = readPropNum(PROP_KEYS[df], 0);
-            if (posVal == POS_NA || posVal < 0 || posVal > 18) {
-                continue;
-            }
-            if (posVal == POS_TOP) {
-                topSlot = df;
-            } else if (posVal == POS_BOT) {
-                botSlot = df;
-            } else {
-                var page = (posVal - 1) / 4;
-                var quad = (posVal - 1) % 4;
-                if (page >= 0 && page < MAX_PAGES && quad >= 0 && quad < 4) {
-                    pageSlots[page][quad] = df;
-                }
-            }
-        }
-
+        // Compute total active pages
         totalPages = 0;
         for (var p = 0; p < MAX_PAGES; p++) {
             for (var q = 0; q < 4; q++) {
-                if (pageSlots[p][q] != -1) {
-                    if (p + 1 > totalPages) {
-                        totalPages = p + 1;
-                    }
+                if (pageSlots[p][q] != DF_NONE) {
+                    if (p + 1 > totalPages) { totalPages = p + 1; }
                     break;
                 }
             }
@@ -107,14 +86,12 @@ class PageView extends Ui.View {
         Ui.requestUpdate();
     }
 
-    // Returns dfType at tap coordinates, or -1
+    // Returns dfType at tap coordinates, or DF_NONE
     function getFieldAtPosition(tapX, tapY) {
-        if (_quadCenters == null) {
-            return -1;
-        }
+        if (_quadCenters == null) { return DF_NONE; }
         var slots = pageSlots[currentPage];
         for (var q = 0; q < 4; q++) {
-            if (slots[q] == -1) { continue; }
+            if (slots[q] == DF_NONE) { continue; }
             var qc = _quadCenters[q];
             var dx = tapX - qc[0];
             var dy = tapY - qc[1];
@@ -124,7 +101,7 @@ class PageView extends Ui.View {
                 return slots[q];
             }
         }
-        return -1;
+        return DF_NONE;
     }
 
     function onUpdate(dc) {
@@ -142,20 +119,17 @@ class PageView extends Ui.View {
         var topBarY = 18;
         var botBarY = h - 18;
 
-        var trackAreaH = 0;
-        if (showTrackTop) {
-            trackAreaH = 30;
-        }
+        var trackAreaH = showTrackTop ? 30 : 0;
 
         var quadTop = topBarY + 16 + trackAreaH;
         var quadBot = botBarY - 16;
         var quadMidY = (quadTop + quadBot) / 2;
 
         // --- Top persistent field ---
-        if (topSlot != -1) {
+        if (topSlot != DF_NONE) {
             var td = DataProvider.getFieldData(topSlot, posInfo, hasGps, qnhHpa);
             var topStr = td[0] + " " + td[1];
-            if (!td[2].equals("")) {
+            if (td.size() == 3 && !td[2].equals("")) {
                 topStr = topStr + td[2];
             }
             dc.setColor(Gfx.COLOR_LT_GRAY, Gfx.COLOR_TRANSPARENT);
@@ -185,17 +159,24 @@ class PageView extends Ui.View {
         var slots = pageSlots[currentPage];
         for (var q = 0; q < 4; q++) {
             var dfType = slots[q];
-            if (dfType == -1) { continue; }
-            var fd = DataProvider.getFieldData(dfType, posInfo, hasGps, qnhHpa);
+            if (dfType == DF_NONE) { continue; }
             var qc = _quadCenters[q];
-            drawQuadrant(dc, qc[0], qc[1], fd[0], fd[1], fd[2], hasGps);
+
+            if (dfType == DF_GPS_QNH_ALT) {
+                // Combined dual-altitude display
+                var fd = DataProvider.getFieldData(dfType, posInfo, hasGps, qnhHpa);
+                drawDualQuadrant(dc, qc[0], qc[1], fd);
+            } else {
+                var fd = DataProvider.getFieldData(dfType, posInfo, hasGps, qnhHpa);
+                drawQuadrant(dc, qc[0], qc[1], fd[0], fd[1], fd[2]);
+            }
         }
 
         // --- Bottom persistent field ---
-        if (botSlot != -1) {
+        if (botSlot != DF_NONE) {
             var bd = DataProvider.getFieldData(botSlot, posInfo, hasGps, qnhHpa);
             var botStr = bd[0] + " " + bd[1];
-            if (!bd[2].equals("")) {
+            if (bd.size() == 3 && !bd[2].equals("")) {
                 botStr = botStr + bd[2];
             }
             dc.setColor(Gfx.COLOR_LT_GRAY, Gfx.COLOR_TRANSPARENT);
@@ -208,7 +189,7 @@ class PageView extends Ui.View {
         }
     }
 
-    function drawQuadrant(dc, cx, cy, label, value, unit, hasGps) {
+    function drawQuadrant(dc, cx, cy, label, value, unit) {
         var isNoGps = value.equals("NoGPS");
 
         dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT);
@@ -225,6 +206,38 @@ class PageView extends Ui.View {
         if (!unit.equals("") && !isNoGps) {
             dc.setColor(Gfx.COLOR_LT_GRAY, Gfx.COLOR_TRANSPARENT);
             dc.drawText(cx, cy + 12, Gfx.FONT_XTINY, unit, Gfx.TEXT_JUSTIFY_CENTER);
+        }
+    }
+
+    // Draw combined GPS + QNH altitude in one cell
+    // fd = ["GPS", gpsVal, "QNH", qnhVal, "ft"]
+    function drawDualQuadrant(dc, cx, cy, fd) {
+        var gpsVal = fd[1];
+        var qnhVal = fd[3];
+        var unit = fd[4];
+        var gpsNoGps = gpsVal.equals("NoGPS");
+        var qnhNoGps = qnhVal.equals("NoGPS");
+
+        // Top line: GPS altitude
+        dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT);
+        dc.drawText(cx, cy - 36, Gfx.FONT_XTINY, "GPS", Gfx.TEXT_JUSTIFY_CENTER);
+        if (gpsNoGps) {
+            dc.setColor(Gfx.COLOR_RED, Gfx.COLOR_TRANSPARENT);
+            dc.drawText(cx, cy - 24, Gfx.FONT_SMALL, "NoGPS", Gfx.TEXT_JUSTIFY_CENTER);
+        } else {
+            dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+            dc.drawText(cx, cy - 24, Gfx.FONT_SMALL, gpsVal + unit, Gfx.TEXT_JUSTIFY_CENTER);
+        }
+
+        // Bottom line: QNH altitude
+        dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT);
+        dc.drawText(cx, cy + 2, Gfx.FONT_XTINY, "QNH", Gfx.TEXT_JUSTIFY_CENTER);
+        if (qnhNoGps) {
+            dc.setColor(Gfx.COLOR_RED, Gfx.COLOR_TRANSPARENT);
+            dc.drawText(cx, cy + 12, Gfx.FONT_SMALL, "NoGPS", Gfx.TEXT_JUSTIFY_CENTER);
+        } else {
+            dc.setColor(Gfx.COLOR_GREEN, Gfx.COLOR_TRANSPARENT);
+            dc.drawText(cx, cy + 12, Gfx.FONT_SMALL, qnhVal + unit, Gfx.TEXT_JUSTIFY_CENTER);
         }
     }
 

@@ -2,44 +2,5 @@
 <resources>
     <strings>
         <string id="AppName">AviData</string>
-
-        <!-- Position labels -->
-        <string id="posNA">Non affiché</string>
-        <string id="posP1HG">Page 1 - Haut Gauche</string>
-        <string id="posP1HD">Page 1 - Haut Droite</string>
-        <string id="posP1BG">Page 1 - Bas Gauche</string>
-        <string id="posP1BD">Page 1 - Bas Droite</string>
-        <string id="posP2HG">Page 2 - Haut Gauche</string>
-        <string id="posP2HD">Page 2 - Haut Droite</string>
-        <string id="posP2BG">Page 2 - Bas Gauche</string>
-        <string id="posP2BD">Page 2 - Bas Droite</string>
-        <string id="posP3HG">Page 3 - Haut Gauche</string>
-        <string id="posP3HD">Page 3 - Haut Droite</string>
-        <string id="posP3BG">Page 3 - Bas Gauche</string>
-        <string id="posP3BD">Page 3 - Bas Droite</string>
-        <string id="posP4HG">Page 4 - Haut Gauche</string>
-        <string id="posP4HD">Page 4 - Haut Droite</string>
-        <string id="posP4BG">Page 4 - Bas Gauche</string>
-        <string id="posP4BD">Page 4 - Bas Droite</string>
-        <string id="posTOP">Bandeau Haut (permanent)</string>
-        <string id="posBOT">Bandeau Bas (permanent)</string>
-
-        <!-- Setting titles -->
-        <string id="setQnhTitle">QNH (hPa)</string>
-        <string id="setShowTrackTitle">Afficher route GPS en haut</string>
-        <string id="setGpsAltTitle">Altitude GPS (ft)</string>
-        <string id="setQnhAltTitle">Altitude QNH (ft)</string>
-        <string id="setGsTitle">Vitesse sol (kt)</string>
-        <string id="setTrackTitle">Route GPS (°)</string>
-        <string id="setVSpeedTitle">Vitesse verticale (ft/min)</string>
-        <string id="setLatTitle">Latitude</string>
-        <string id="setLonTitle">Longitude</string>
-        <string id="setUtcTitle">Heure UTC</string>
-        <string id="setLocalTimeTitle">Heure locale</string>
-        <string id="setBattTitle">Batterie (%)</string>
-        <string id="setPressTitle">Pression (hPa)</string>
-        <string id="setGpsAccTitle">Précision GPS</string>
-        <string id="setOatTitle">Température ext. (°C)</string>
-        <string id="setDensAltTitle">Altitude densité (ft)</string>
     </strings>
 </resources>

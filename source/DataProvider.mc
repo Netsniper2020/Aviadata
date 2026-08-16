@@ -9,10 +9,13 @@ using Toybox.Sensor;
 
 class DataProvider {
 
+    // Returns [label, value, unit] for standard fields
+    // For DF_GPS_QNH_ALT, returns [label1, val1, label2, val2, unit]
     static function getFieldData(dfType, posInfo, hasGps, qnhHpa) {
         switch (dfType) {
             case DF_GPS_ALT:      return getGpsAlt(posInfo, hasGps);
             case DF_QNH_ALT:      return getQnhAlt(posInfo, hasGps, qnhHpa);
+            case DF_GPS_QNH_ALT:  return getGpsQnhAlt(posInfo, hasGps, qnhHpa);
             case DF_GROUND_SPEED: return getGroundSpeed(posInfo, hasGps);
             case DF_GPS_TRACK:    return getGpsTrack(posInfo, hasGps);
             case DF_V_SPEED:      return getVSpeed();
@@ -26,26 +29,6 @@ class DataProvider {
             case DF_OAT:          return getOat();
             case DF_DENSITY_ALT:  return getDensityAlt(posInfo, hasGps, qnhHpa);
             default:              return ["---", "---", ""];
-        }
-    }
-
-    static function getLabel(dfType) {
-        switch (dfType) {
-            case DF_GPS_ALT:      return "ALT GPS";
-            case DF_QNH_ALT:      return "ALT QNH";
-            case DF_GROUND_SPEED: return "GS";
-            case DF_GPS_TRACK:    return "TRK";
-            case DF_V_SPEED:      return "VS";
-            case DF_LAT:          return "LAT";
-            case DF_LON:          return "LON";
-            case DF_UTC_TIME:     return "UTC";
-            case DF_LOCAL_TIME:   return "LCL";
-            case DF_BATTERY:      return "BATT";
-            case DF_PRESSURE:     return "QFE";
-            case DF_GPS_ACCURACY: return "GPS";
-            case DF_OAT:          return "OAT";
-            case DF_DENSITY_ALT:  return "DA";
-            default:              return "?";
         }
     }
 
@@ -75,6 +58,13 @@ class DataProvider {
         var correction = (qnhHpa.toFloat() - 1013.25f) * 30.0f;
         var qnhAlt = (gpsAltFt + correction).toNumber();
         return ["ALT QNH", qnhAlt.toString(), "ft"];
+    }
+
+    // Combined GPS + QNH: returns 5-element array
+    static function getGpsQnhAlt(posInfo, hasGps, qnhHpa) {
+        var gpsData = getGpsAlt(posInfo, hasGps);
+        var qnhData = getQnhAlt(posInfo, hasGps, qnhHpa);
+        return ["GPS", gpsData[1], "QNH", qnhData[1], "ft"];
     }
 
     static function getGroundSpeed(posInfo, hasGps) {

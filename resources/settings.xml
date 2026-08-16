@@ -2,349 +2,389 @@
 <resources>
     <settings>
 
-        <!-- ============ GENERAL ============ -->
-        <setting propertyKey="@Properties.qnhValue" title="@Strings.setQnhTitle">
+        <setting propertyKey="@Properties.qnhValue" title="QNH (hPa)">
             <settingConfig type="numeric" min="900" max="1100"/>
         </setting>
 
-        <setting propertyKey="@Properties.showTrackTop" title="@Strings.setShowTrackTitle">
+        <setting propertyKey="@Properties.showTrackTop" title="Afficher route GPS en haut">
             <settingConfig type="boolean"/>
         </setting>
 
-        <!-- ============ DATA POSITIONS ============ -->
-        <setting propertyKey="@Properties.posGpsAlt" title="@Strings.setGpsAltTitle">
+        <setting propertyKey="@Properties.slotP1HG" title="Page 1 - Haut Gauche">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.posNA</listEntry>
-                <listEntry value="1">@Strings.posP1HG</listEntry>
-                <listEntry value="2">@Strings.posP1HD</listEntry>
-                <listEntry value="3">@Strings.posP1BG</listEntry>
-                <listEntry value="4">@Strings.posP1BD</listEntry>
-                <listEntry value="5">@Strings.posP2HG</listEntry>
-                <listEntry value="6">@Strings.posP2HD</listEntry>
-                <listEntry value="7">@Strings.posP2BG</listEntry>
-                <listEntry value="8">@Strings.posP2BD</listEntry>
-                <listEntry value="9">@Strings.posP3HG</listEntry>
-                <listEntry value="10">@Strings.posP3HD</listEntry>
-                <listEntry value="11">@Strings.posP3BG</listEntry>
-                <listEntry value="12">@Strings.posP3BD</listEntry>
-                <listEntry value="13">@Strings.posP4HG</listEntry>
-                <listEntry value="14">@Strings.posP4HD</listEntry>
-                <listEntry value="15">@Strings.posP4BG</listEntry>
-                <listEntry value="16">@Strings.posP4BD</listEntry>
-                <listEntry value="17">@Strings.posTOP</listEntry>
-                <listEntry value="18">@Strings.posBOT</listEntry>
+                <listEntry value="0">Aucun</listEntry>
+                <listEntry value="1">Altitude GPS (ft)</listEntry>
+                <listEntry value="2">Altitude QNH (ft)</listEntry>
+                <listEntry value="3">Alt GPS + QNH (ft)</listEntry>
+                <listEntry value="4">Vitesse sol (kt)</listEntry>
+                <listEntry value="5">Route GPS (°)</listEntry>
+                <listEntry value="6">Vitesse verticale (ft/min)</listEntry>
+                <listEntry value="7">Latitude</listEntry>
+                <listEntry value="8">Longitude</listEntry>
+                <listEntry value="9">Heure UTC</listEntry>
+                <listEntry value="10">Heure locale</listEntry>
+                <listEntry value="11">Batterie (%)</listEntry>
+                <listEntry value="12">Pression (hPa)</listEntry>
+                <listEntry value="13">Précision GPS</listEntry>
+                <listEntry value="14">Température ext. (°C)</listEntry>
+                <listEntry value="15">Altitude densité (ft)</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.posQnhAlt" title="@Strings.setQnhAltTitle">
+        <setting propertyKey="@Properties.slotP1HD" title="Page 1 - Haut Droite">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.posNA</listEntry>
-                <listEntry value="1">@Strings.posP1HG</listEntry>
-                <listEntry value="2">@Strings.posP1HD</listEntry>
-                <listEntry value="3">@Strings.posP1BG</listEntry>
-                <listEntry value="4">@Strings.posP1BD</listEntry>
-                <listEntry value="5">@Strings.posP2HG</listEntry>
-                <listEntry value="6">@Strings.posP2HD</listEntry>
-                <listEntry value="7">@Strings.posP2BG</listEntry>
-                <listEntry value="8">@Strings.posP2BD</listEntry>
-                <listEntry value="9">@Strings.posP3HG</listEntry>
-                <listEntry value="10">@Strings.posP3HD</listEntry>
-                <listEntry value="11">@Strings.posP3BG</listEntry>
-                <listEntry value="12">@Strings.posP3BD</listEntry>
-                <listEntry value="13">@Strings.posP4HG</listEntry>
-                <listEntry value="14">@Strings.posP4HD</listEntry>
-                <listEntry value="15">@Strings.posP4BG</listEntry>
-                <listEntry value="16">@Strings.posP4BD</listEntry>
-                <listEntry value="17">@Strings.posTOP</listEntry>
-                <listEntry value="18">@Strings.posBOT</listEntry>
+                <listEntry value="0">Aucun</listEntry>
+                <listEntry value="1">Altitude GPS (ft)</listEntry>
+                <listEntry value="2">Altitude QNH (ft)</listEntry>
+                <listEntry value="3">Alt GPS + QNH (ft)</listEntry>
+                <listEntry value="4">Vitesse sol (kt)</listEntry>
+                <listEntry value="5">Route GPS (°)</listEntry>
+                <listEntry value="6">Vitesse verticale (ft/min)</listEntry>
+                <listEntry value="7">Latitude</listEntry>
+                <listEntry value="8">Longitude</listEntry>
+                <listEntry value="9">Heure UTC</listEntry>
+                <listEntry value="10">Heure locale</listEntry>
+                <listEntry value="11">Batterie (%)</listEntry>
+                <listEntry value="12">Pression (hPa)</listEntry>
+                <listEntry value="13">Précision GPS</listEntry>
+                <listEntry value="14">Température ext. (°C)</listEntry>
+                <listEntry value="15">Altitude densité (ft)</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.posGroundSpeed" title="@Strings.setGsTitle">
+        <setting propertyKey="@Properties.slotP1BG" title="Page 1 - Bas Gauche">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.posNA</listEntry>
-                <listEntry value="1">@Strings.posP1HG</listEntry>
-                <listEntry value="2">@Strings.posP1HD</listEntry>
-                <listEntry value="3">@Strings.posP1BG</listEntry>
-                <listEntry value="4">@Strings.posP1BD</listEntry>
-                <listEntry value="5">@Strings.posP2HG</listEntry>
-                <listEntry value="6">@Strings.posP2HD</listEntry>
-                <listEntry value="7">@Strings.posP2BG</listEntry>
-                <listEntry value="8">@Strings.posP2BD</listEntry>
-                <listEntry value="9">@Strings.posP3HG</listEntry>
-                <listEntry value="10">@Strings.posP3HD</listEntry>
-                <listEntry value="11">@Strings.posP3BG</listEntry>
-                <listEntry value="12">@Strings.posP3BD</listEntry>
-                <listEntry value="13">@Strings.posP4HG</listEntry>
-                <listEntry value="14">@Strings.posP4HD</listEntry>
-                <listEntry value="15">@Strings.posP4BG</listEntry>
-                <listEntry value="16">@Strings.posP4BD</listEntry>
-                <listEntry value="17">@Strings.posTOP</listEntry>
-                <listEntry value="18">@Strings.posBOT</listEntry>
+                <listEntry value="0">Aucun</listEntry>
+                <listEntry value="1">Altitude GPS (ft)</listEntry>
+                <listEntry value="2">Altitude QNH (ft)</listEntry>
+                <listEntry value="3">Alt GPS + QNH (ft)</listEntry>
+                <listEntry value="4">Vitesse sol (kt)</listEntry>
+                <listEntry value="5">Route GPS (°)</listEntry>
+                <listEntry value="6">Vitesse verticale (ft/min)</listEntry>
+                <listEntry value="7">Latitude</listEntry>
+                <listEntry value="8">Longitude</listEntry>
+                <listEntry value="9">Heure UTC</listEntry>
+                <listEntry value="10">Heure locale</listEntry>
+                <listEntry value="11">Batterie (%)</listEntry>
+                <listEntry value="12">Pression (hPa)</listEntry>
+                <listEntry value="13">Précision GPS</listEntry>
+                <listEntry value="14">Température ext. (°C)</listEntry>
+                <listEntry value="15">Altitude densité (ft)</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.posGpsTrack" title="@Strings.setTrackTitle">
+        <setting propertyKey="@Properties.slotP1BD" title="Page 1 - Bas Droite">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.posNA</listEntry>
-                <listEntry value="1">@Strings.posP1HG</listEntry>
-                <listEntry value="2">@Strings.posP1HD</listEntry>
-                <listEntry value="3">@Strings.posP1BG</listEntry>
-                <listEntry value="4">@Strings.posP1BD</listEntry>
-                <listEntry value="5">@Strings.posP2HG</listEntry>
-                <listEntry value="6">@Strings.posP2HD</listEntry>
-                <listEntry value="7">@Strings.posP2BG</listEntry>
-                <listEntry value="8">@Strings.posP2BD</listEntry>
-                <listEntry value="9">@Strings.posP3HG</listEntry>
-                <listEntry value="10">@Strings.posP3HD</listEntry>
-                <listEntry value="11">@Strings.posP3BG</listEntry>
-                <listEntry value="12">@Strings.posP3BD</listEntry>
-                <listEntry value="13">@Strings.posP4HG</listEntry>
-                <listEntry value="14">@Strings.posP4HD</listEntry>
-                <listEntry value="15">@Strings.posP4BG</listEntry>
-                <listEntry value="16">@Strings.posP4BD</listEntry>
-                <listEntry value="17">@Strings.posTOP</listEntry>
-                <listEntry value="18">@Strings.posBOT</listEntry>
+                <listEntry value="0">Aucun</listEntry>
+                <listEntry value="1">Altitude GPS (ft)</listEntry>
+                <listEntry value="2">Altitude QNH (ft)</listEntry>
+                <listEntry value="3">Alt GPS + QNH (ft)</listEntry>
+                <listEntry value="4">Vitesse sol (kt)</listEntry>
+                <listEntry value="5">Route GPS (°)</listEntry>
+                <listEntry value="6">Vitesse verticale (ft/min)</listEntry>
+                <listEntry value="7">Latitude</listEntry>
+                <listEntry value="8">Longitude</listEntry>
+                <listEntry value="9">Heure UTC</listEntry>
+                <listEntry value="10">Heure locale</listEntry>
+                <listEntry value="11">Batterie (%)</listEntry>
+                <listEntry value="12">Pression (hPa)</listEntry>
+                <listEntry value="13">Précision GPS</listEntry>
+                <listEntry value="14">Température ext. (°C)</listEntry>
+                <listEntry value="15">Altitude densité (ft)</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.posVSpeed" title="@Strings.setVSpeedTitle">
+        <setting propertyKey="@Properties.slotP2HG" title="Page 2 - Haut Gauche">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.posNA</listEntry>
-                <listEntry value="1">@Strings.posP1HG</listEntry>
-                <listEntry value="2">@Strings.posP1HD</listEntry>
-                <listEntry value="3">@Strings.posP1BG</listEntry>
-                <listEntry value="4">@Strings.posP1BD</listEntry>
-                <listEntry value="5">@Strings.posP2HG</listEntry>
-                <listEntry value="6">@Strings.posP2HD</listEntry>
-                <listEntry value="7">@Strings.posP2BG</listEntry>
-                <listEntry value="8">@Strings.posP2BD</listEntry>
-                <listEntry value="9">@Strings.posP3HG</listEntry>
-                <listEntry value="10">@Strings.posP3HD</listEntry>
-                <listEntry value="11">@Strings.posP3BG</listEntry>
-                <listEntry value="12">@Strings.posP3BD</listEntry>
-                <listEntry value="13">@Strings.posP4HG</listEntry>
-                <listEntry value="14">@Strings.posP4HD</listEntry>
-                <listEntry value="15">@Strings.posP4BG</listEntry>
-                <listEntry value="16">@Strings.posP4BD</listEntry>
-                <listEntry value="17">@Strings.posTOP</listEntry>
-                <listEntry value="18">@Strings.posBOT</listEntry>
+                <listEntry value="0">Aucun</listEntry>
+                <listEntry value="1">Altitude GPS (ft)</listEntry>
+                <listEntry value="2">Altitude QNH (ft)</listEntry>
+                <listEntry value="3">Alt GPS + QNH (ft)</listEntry>
+                <listEntry value="4">Vitesse sol (kt)</listEntry>
+                <listEntry value="5">Route GPS (°)</listEntry>
+                <listEntry value="6">Vitesse verticale (ft/min)</listEntry>
+                <listEntry value="7">Latitude</listEntry>
+                <listEntry value="8">Longitude</listEntry>
+                <listEntry value="9">Heure UTC</listEntry>
+                <listEntry value="10">Heure locale</listEntry>
+                <listEntry value="11">Batterie (%)</listEntry>
+                <listEntry value="12">Pression (hPa)</listEntry>
+                <listEntry value="13">Précision GPS</listEntry>
+                <listEntry value="14">Température ext. (°C)</listEntry>
+                <listEntry value="15">Altitude densité (ft)</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.posLat" title="@Strings.setLatTitle">
+        <setting propertyKey="@Properties.slotP2HD" title="Page 2 - Haut Droite">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.posNA</listEntry>
-                <listEntry value="1">@Strings.posP1HG</listEntry>
-                <listEntry value="2">@Strings.posP1HD</listEntry>
-                <listEntry value="3">@Strings.posP1BG</listEntry>
-                <listEntry value="4">@Strings.posP1BD</listEntry>
-                <listEntry value="5">@Strings.posP2HG</listEntry>
-                <listEntry value="6">@Strings.posP2HD</listEntry>
-                <listEntry value="7">@Strings.posP2BG</listEntry>
-                <listEntry value="8">@Strings.posP2BD</listEntry>
-                <listEntry value="9">@Strings.posP3HG</listEntry>
-                <listEntry value="10">@Strings.posP3HD</listEntry>
-                <listEntry value="11">@Strings.posP3BG</listEntry>
-                <listEntry value="12">@Strings.posP3BD</listEntry>
-                <listEntry value="13">@Strings.posP4HG</listEntry>
-                <listEntry value="14">@Strings.posP4HD</listEntry>
-                <listEntry value="15">@Strings.posP4BG</listEntry>
-                <listEntry value="16">@Strings.posP4BD</listEntry>
-                <listEntry value="17">@Strings.posTOP</listEntry>
-                <listEntry value="18">@Strings.posBOT</listEntry>
+                <listEntry value="0">Aucun</listEntry>
+                <listEntry value="1">Altitude GPS (ft)</listEntry>
+                <listEntry value="2">Altitude QNH (ft)</listEntry>
+                <listEntry value="3">Alt GPS + QNH (ft)</listEntry>
+                <listEntry value="4">Vitesse sol (kt)</listEntry>
+                <listEntry value="5">Route GPS (°)</listEntry>
+                <listEntry value="6">Vitesse verticale (ft/min)</listEntry>
+                <listEntry value="7">Latitude</listEntry>
+                <listEntry value="8">Longitude</listEntry>
+                <listEntry value="9">Heure UTC</listEntry>
+                <listEntry value="10">Heure locale</listEntry>
+                <listEntry value="11">Batterie (%)</listEntry>
+                <listEntry value="12">Pression (hPa)</listEntry>
+                <listEntry value="13">Précision GPS</listEntry>
+                <listEntry value="14">Température ext. (°C)</listEntry>
+                <listEntry value="15">Altitude densité (ft)</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.posLon" title="@Strings.setLonTitle">
+        <setting propertyKey="@Properties.slotP2BG" title="Page 2 - Bas Gauche">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.posNA</listEntry>
-                <listEntry value="1">@Strings.posP1HG</listEntry>
-                <listEntry value="2">@Strings.posP1HD</listEntry>
-                <listEntry value="3">@Strings.posP1BG</listEntry>
-                <listEntry value="4">@Strings.posP1BD</listEntry>
-                <listEntry value="5">@Strings.posP2HG</listEntry>
-                <listEntry value="6">@Strings.posP2HD</listEntry>
-                <listEntry value="7">@Strings.posP2BG</listEntry>
-                <listEntry value="8">@Strings.posP2BD</listEntry>
-                <listEntry value="9">@Strings.posP3HG</listEntry>
-                <listEntry value="10">@Strings.posP3HD</listEntry>
-                <listEntry value="11">@Strings.posP3BG</listEntry>
-                <listEntry value="12">@Strings.posP3BD</listEntry>
-                <listEntry value="13">@Strings.posP4HG</listEntry>
-                <listEntry value="14">@Strings.posP4HD</listEntry>
-                <listEntry value="15">@Strings.posP4BG</listEntry>
-                <listEntry value="16">@Strings.posP4BD</listEntry>
-                <listEntry value="17">@Strings.posTOP</listEntry>
-                <listEntry value="18">@Strings.posBOT</listEntry>
+                <listEntry value="0">Aucun</listEntry>
+                <listEntry value="1">Altitude GPS (ft)</listEntry>
+                <listEntry value="2">Altitude QNH (ft)</listEntry>
+                <listEntry value="3">Alt GPS + QNH (ft)</listEntry>
+                <listEntry value="4">Vitesse sol (kt)</listEntry>
+                <listEntry value="5">Route GPS (°)</listEntry>
+                <listEntry value="6">Vitesse verticale (ft/min)</listEntry>
+                <listEntry value="7">Latitude</listEntry>
+                <listEntry value="8">Longitude</listEntry>
+                <listEntry value="9">Heure UTC</listEntry>
+                <listEntry value="10">Heure locale</listEntry>
+                <listEntry value="11">Batterie (%)</listEntry>
+                <listEntry value="12">Pression (hPa)</listEntry>
+                <listEntry value="13">Précision GPS</listEntry>
+                <listEntry value="14">Température ext. (°C)</listEntry>
+                <listEntry value="15">Altitude densité (ft)</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.posUtcTime" title="@Strings.setUtcTitle">
+        <setting propertyKey="@Properties.slotP2BD" title="Page 2 - Bas Droite">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.posNA</listEntry>
-                <listEntry value="1">@Strings.posP1HG</listEntry>
-                <listEntry value="2">@Strings.posP1HD</listEntry>
-                <listEntry value="3">@Strings.posP1BG</listEntry>
-                <listEntry value="4">@Strings.posP1BD</listEntry>
-                <listEntry value="5">@Strings.posP2HG</listEntry>
-                <listEntry value="6">@Strings.posP2HD</listEntry>
-                <listEntry value="7">@Strings.posP2BG</listEntry>
-                <listEntry value="8">@Strings.posP2BD</listEntry>
-                <listEntry value="9">@Strings.posP3HG</listEntry>
-                <listEntry value="10">@Strings.posP3HD</listEntry>
-                <listEntry value="11">@Strings.posP3BG</listEntry>
-                <listEntry value="12">@Strings.posP3BD</listEntry>
-                <listEntry value="13">@Strings.posP4HG</listEntry>
-                <listEntry value="14">@Strings.posP4HD</listEntry>
-                <listEntry value="15">@Strings.posP4BG</listEntry>
-                <listEntry value="16">@Strings.posP4BD</listEntry>
-                <listEntry value="17">@Strings.posTOP</listEntry>
-                <listEntry value="18">@Strings.posBOT</listEntry>
+                <listEntry value="0">Aucun</listEntry>
+                <listEntry value="1">Altitude GPS (ft)</listEntry>
+                <listEntry value="2">Altitude QNH (ft)</listEntry>
+                <listEntry value="3">Alt GPS + QNH (ft)</listEntry>
+                <listEntry value="4">Vitesse sol (kt)</listEntry>
+                <listEntry value="5">Route GPS (°)</listEntry>
+                <listEntry value="6">Vitesse verticale (ft/min)</listEntry>
+                <listEntry value="7">Latitude</listEntry>
+                <listEntry value="8">Longitude</listEntry>
+                <listEntry value="9">Heure UTC</listEntry>
+                <listEntry value="10">Heure locale</listEntry>
+                <listEntry value="11">Batterie (%)</listEntry>
+                <listEntry value="12">Pression (hPa)</listEntry>
+                <listEntry value="13">Précision GPS</listEntry>
+                <listEntry value="14">Température ext. (°C)</listEntry>
+                <listEntry value="15">Altitude densité (ft)</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.posLocalTime" title="@Strings.setLocalTimeTitle">
+        <setting propertyKey="@Properties.slotP3HG" title="Page 3 - Haut Gauche">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.posNA</listEntry>
-                <listEntry value="1">@Strings.posP1HG</listEntry>
-                <listEntry value="2">@Strings.posP1HD</listEntry>
-                <listEntry value="3">@Strings.posP1BG</listEntry>
-                <listEntry value="4">@Strings.posP1BD</listEntry>
-                <listEntry value="5">@Strings.posP2HG</listEntry>
-                <listEntry value="6">@Strings.posP2HD</listEntry>
-                <listEntry value="7">@Strings.posP2BG</listEntry>
-                <listEntry value="8">@Strings.posP2BD</listEntry>
-                <listEntry value="9">@Strings.posP3HG</listEntry>
-                <listEntry value="10">@Strings.posP3HD</listEntry>
-                <listEntry value="11">@Strings.posP3BG</listEntry>
-                <listEntry value="12">@Strings.posP3BD</listEntry>
-                <listEntry value="13">@Strings.posP4HG</listEntry>
-                <listEntry value="14">@Strings.posP4HD</listEntry>
-                <listEntry value="15">@Strings.posP4BG</listEntry>
-                <listEntry value="16">@Strings.posP4BD</listEntry>
-                <listEntry value="17">@Strings.posTOP</listEntry>
-                <listEntry value="18">@Strings.posBOT</listEntry>
+                <listEntry value="0">Aucun</listEntry>
+                <listEntry value="1">Altitude GPS (ft)</listEntry>
+                <listEntry value="2">Altitude QNH (ft)</listEntry>
+                <listEntry value="3">Alt GPS + QNH (ft)</listEntry>
+                <listEntry value="4">Vitesse sol (kt)</listEntry>
+                <listEntry value="5">Route GPS (°)</listEntry>
+                <listEntry value="6">Vitesse verticale (ft/min)</listEntry>
+                <listEntry value="7">Latitude</listEntry>
+                <listEntry value="8">Longitude</listEntry>
+                <listEntry value="9">Heure UTC</listEntry>
+                <listEntry value="10">Heure locale</listEntry>
+                <listEntry value="11">Batterie (%)</listEntry>
+                <listEntry value="12">Pression (hPa)</listEntry>
+                <listEntry value="13">Précision GPS</listEntry>
+                <listEntry value="14">Température ext. (°C)</listEntry>
+                <listEntry value="15">Altitude densité (ft)</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.posBattery" title="@Strings.setBattTitle">
+        <setting propertyKey="@Properties.slotP3HD" title="Page 3 - Haut Droite">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.posNA</listEntry>
-                <listEntry value="1">@Strings.posP1HG</listEntry>
-                <listEntry value="2">@Strings.posP1HD</listEntry>
-                <listEntry value="3">@Strings.posP1BG</listEntry>
-                <listEntry value="4">@Strings.posP1BD</listEntry>
-                <listEntry value="5">@Strings.posP2HG</listEntry>
-                <listEntry value="6">@Strings.posP2HD</listEntry>
-                <listEntry value="7">@Strings.posP2BG</listEntry>
-                <listEntry value="8">@Strings.posP2BD</listEntry>
-                <listEntry value="9">@Strings.posP3HG</listEntry>
-                <listEntry value="10">@Strings.posP3HD</listEntry>
-                <listEntry value="11">@Strings.posP3BG</listEntry>
-                <listEntry value="12">@Strings.posP3BD</listEntry>
-                <listEntry value="13">@Strings.posP4HG</listEntry>
-                <listEntry value="14">@Strings.posP4HD</listEntry>
-                <listEntry value="15">@Strings.posP4BG</listEntry>
-                <listEntry value="16">@Strings.posP4BD</listEntry>
-                <listEntry value="17">@Strings.posTOP</listEntry>
-                <listEntry value="18">@Strings.posBOT</listEntry>
+                <listEntry value="0">Aucun</listEntry>
+                <listEntry value="1">Altitude GPS (ft)</listEntry>
+                <listEntry value="2">Altitude QNH (ft)</listEntry>
+                <listEntry value="3">Alt GPS + QNH (ft)</listEntry>
+                <listEntry value="4">Vitesse sol (kt)</listEntry>
+                <listEntry value="5">Route GPS (°)</listEntry>
+                <listEntry value="6">Vitesse verticale (ft/min)</listEntry>
+                <listEntry value="7">Latitude</listEntry>
+                <listEntry value="8">Longitude</listEntry>
+                <listEntry value="9">Heure UTC</listEntry>
+                <listEntry value="10">Heure locale</listEntry>
+                <listEntry value="11">Batterie (%)</listEntry>
+                <listEntry value="12">Pression (hPa)</listEntry>
+                <listEntry value="13">Précision GPS</listEntry>
+                <listEntry value="14">Température ext. (°C)</listEntry>
+                <listEntry value="15">Altitude densité (ft)</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.posPressure" title="@Strings.setPressTitle">
+        <setting propertyKey="@Properties.slotP3BG" title="Page 3 - Bas Gauche">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.posNA</listEntry>
-                <listEntry value="1">@Strings.posP1HG</listEntry>
-                <listEntry value="2">@Strings.posP1HD</listEntry>
-                <listEntry value="3">@Strings.posP1BG</listEntry>
-                <listEntry value="4">@Strings.posP1BD</listEntry>
-                <listEntry value="5">@Strings.posP2HG</listEntry>
-                <listEntry value="6">@Strings.posP2HD</listEntry>
-                <listEntry value="7">@Strings.posP2BG</listEntry>
-                <listEntry value="8">@Strings.posP2BD</listEntry>
-                <listEntry value="9">@Strings.posP3HG</listEntry>
-                <listEntry value="10">@Strings.posP3HD</listEntry>
-                <listEntry value="11">@Strings.posP3BG</listEntry>
-                <listEntry value="12">@Strings.posP3BD</listEntry>
-                <listEntry value="13">@Strings.posP4HG</listEntry>
-                <listEntry value="14">@Strings.posP4HD</listEntry>
-                <listEntry value="15">@Strings.posP4BG</listEntry>
-                <listEntry value="16">@Strings.posP4BD</listEntry>
-                <listEntry value="17">@Strings.posTOP</listEntry>
-                <listEntry value="18">@Strings.posBOT</listEntry>
+                <listEntry value="0">Aucun</listEntry>
+                <listEntry value="1">Altitude GPS (ft)</listEntry>
+                <listEntry value="2">Altitude QNH (ft)</listEntry>
+                <listEntry value="3">Alt GPS + QNH (ft)</listEntry>
+                <listEntry value="4">Vitesse sol (kt)</listEntry>
+                <listEntry value="5">Route GPS (°)</listEntry>
+                <listEntry value="6">Vitesse verticale (ft/min)</listEntry>
+                <listEntry value="7">Latitude</listEntry>
+                <listEntry value="8">Longitude</listEntry>
+                <listEntry value="9">Heure UTC</listEntry>
+                <listEntry value="10">Heure locale</listEntry>
+                <listEntry value="11">Batterie (%)</listEntry>
+                <listEntry value="12">Pression (hPa)</listEntry>
+                <listEntry value="13">Précision GPS</listEntry>
+                <listEntry value="14">Température ext. (°C)</listEntry>
+                <listEntry value="15">Altitude densité (ft)</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.posGpsAccuracy" title="@Strings.setGpsAccTitle">
+        <setting propertyKey="@Properties.slotP3BD" title="Page 3 - Bas Droite">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.posNA</listEntry>
-                <listEntry value="1">@Strings.posP1HG</listEntry>
-                <listEntry value="2">@Strings.posP1HD</listEntry>
-                <listEntry value="3">@Strings.posP1BG</listEntry>
-                <listEntry value="4">@Strings.posP1BD</listEntry>
-                <listEntry value="5">@Strings.posP2HG</listEntry>
-                <listEntry value="6">@Strings.posP2HD</listEntry>
-                <listEntry value="7">@Strings.posP2BG</listEntry>
-                <listEntry value="8">@Strings.posP2BD</listEntry>
-                <listEntry value="9">@Strings.posP3HG</listEntry>
-                <listEntry value="10">@Strings.posP3HD</listEntry>
-                <listEntry value="11">@Strings.posP3BG</listEntry>
-                <listEntry value="12">@Strings.posP3BD</listEntry>
-                <listEntry value="13">@Strings.posP4HG</listEntry>
-                <listEntry value="14">@Strings.posP4HD</listEntry>
-                <listEntry value="15">@Strings.posP4BG</listEntry>
-                <listEntry value="16">@Strings.posP4BD</listEntry>
-                <listEntry value="17">@Strings.posTOP</listEntry>
-                <listEntry value="18">@Strings.posBOT</listEntry>
+                <listEntry value="0">Aucun</listEntry>
+                <listEntry value="1">Altitude GPS (ft)</listEntry>
+                <listEntry value="2">Altitude QNH (ft)</listEntry>
+                <listEntry value="3">Alt GPS + QNH (ft)</listEntry>
+                <listEntry value="4">Vitesse sol (kt)</listEntry>
+                <listEntry value="5">Route GPS (°)</listEntry>
+                <listEntry value="6">Vitesse verticale (ft/min)</listEntry>
+                <listEntry value="7">Latitude</listEntry>
+                <listEntry value="8">Longitude</listEntry>
+                <listEntry value="9">Heure UTC</listEntry>
+                <listEntry value="10">Heure locale</listEntry>
+                <listEntry value="11">Batterie (%)</listEntry>
+                <listEntry value="12">Pression (hPa)</listEntry>
+                <listEntry value="13">Précision GPS</listEntry>
+                <listEntry value="14">Température ext. (°C)</listEntry>
+                <listEntry value="15">Altitude densité (ft)</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.posOat" title="@Strings.setOatTitle">
+        <setting propertyKey="@Properties.slotP4HG" title="Page 4 - Haut Gauche">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.posNA</listEntry>
-                <listEntry value="1">@Strings.posP1HG</listEntry>
-                <listEntry value="2">@Strings.posP1HD</listEntry>
-                <listEntry value="3">@Strings.posP1BG</listEntry>
-                <listEntry value="4">@Strings.posP1BD</listEntry>
-                <listEntry value="5">@Strings.posP2HG</listEntry>
-                <listEntry value="6">@Strings.posP2HD</listEntry>
-                <listEntry value="7">@Strings.posP2BG</listEntry>
-                <listEntry value="8">@Strings.posP2BD</listEntry>
-                <listEntry value="9">@Strings.posP3HG</listEntry>
-                <listEntry value="10">@Strings.posP3HD</listEntry>
-                <listEntry value="11">@Strings.posP3BG</listEntry>
-                <listEntry value="12">@Strings.posP3BD</listEntry>
-                <listEntry value="13">@Strings.posP4HG</listEntry>
-                <listEntry value="14">@Strings.posP4HD</listEntry>
-                <listEntry value="15">@Strings.posP4BG</listEntry>
-                <listEntry value="16">@Strings.posP4BD</listEntry>
-                <listEntry value="17">@Strings.posTOP</listEntry>
-                <listEntry value="18">@Strings.posBOT</listEntry>
+                <listEntry value="0">Aucun</listEntry>
+                <listEntry value="1">Altitude GPS (ft)</listEntry>
+                <listEntry value="2">Altitude QNH (ft)</listEntry>
+                <listEntry value="3">Alt GPS + QNH (ft)</listEntry>
+                <listEntry value="4">Vitesse sol (kt)</listEntry>
+                <listEntry value="5">Route GPS (°)</listEntry>
+                <listEntry value="6">Vitesse verticale (ft/min)</listEntry>
+                <listEntry value="7">Latitude</listEntry>
+                <listEntry value="8">Longitude</listEntry>
+                <listEntry value="9">Heure UTC</listEntry>
+                <listEntry value="10">Heure locale</listEntry>
+                <listEntry value="11">Batterie (%)</listEntry>
+                <listEntry value="12">Pression (hPa)</listEntry>
+                <listEntry value="13">Précision GPS</listEntry>
+                <listEntry value="14">Température ext. (°C)</listEntry>
+                <listEntry value="15">Altitude densité (ft)</listEntry>
             </settingConfig>
         </setting>
 
-        <setting propertyKey="@Properties.posDensityAlt" title="@Strings.setDensAltTitle">
+        <setting propertyKey="@Properties.slotP4HD" title="Page 4 - Haut Droite">
             <settingConfig type="list">
-                <listEntry value="0">@Strings.posNA</listEntry>
-                <listEntry value="1">@Strings.posP1HG</listEntry>
-                <listEntry value="2">@Strings.posP1HD</listEntry>
-                <listEntry value="3">@Strings.posP1BG</listEntry>
-                <listEntry value="4">@Strings.posP1BD</listEntry>
-                <listEntry value="5">@Strings.posP2HG</listEntry>
-                <listEntry value="6">@Strings.posP2HD</listEntry>
-                <listEntry value="7">@Strings.posP2BG</listEntry>
-                <listEntry value="8">@Strings.posP2BD</listEntry>
-                <listEntry value="9">@Strings.posP3HG</listEntry>
-                <listEntry value="10">@Strings.posP3HD</listEntry>
-                <listEntry value="11">@Strings.posP3BG</listEntry>
-                <listEntry value="12">@Strings.posP3BD</listEntry>
-                <listEntry value="13">@Strings.posP4HG</listEntry>
-                <listEntry value="14">@Strings.posP4HD</listEntry>
-                <listEntry value="15">@Strings.posP4BG</listEntry>
-                <listEntry value="16">@Strings.posP4BD</listEntry>
-                <listEntry value="17">@Strings.posTOP</listEntry>
-                <listEntry value="18">@Strings.posBOT</listEntry>
+                <listEntry value="0">Aucun</listEntry>
+                <listEntry value="1">Altitude GPS (ft)</listEntry>
+                <listEntry value="2">Altitude QNH (ft)</listEntry>
+                <listEntry value="3">Alt GPS + QNH (ft)</listEntry>
+                <listEntry value="4">Vitesse sol (kt)</listEntry>
+                <listEntry value="5">Route GPS (°)</listEntry>
+                <listEntry value="6">Vitesse verticale (ft/min)</listEntry>
+                <listEntry value="7">Latitude</listEntry>
+                <listEntry value="8">Longitude</listEntry>
+                <listEntry value="9">Heure UTC</listEntry>
+                <listEntry value="10">Heure locale</listEntry>
+                <listEntry value="11">Batterie (%)</listEntry>
+                <listEntry value="12">Pression (hPa)</listEntry>
+                <listEntry value="13">Précision GPS</listEntry>
+                <listEntry value="14">Température ext. (°C)</listEntry>
+                <listEntry value="15">Altitude densité (ft)</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.slotP4BG" title="Page 4 - Bas Gauche">
+            <settingConfig type="list">
+                <listEntry value="0">Aucun</listEntry>
+                <listEntry value="1">Altitude GPS (ft)</listEntry>
+                <listEntry value="2">Altitude QNH (ft)</listEntry>
+                <listEntry value="3">Alt GPS + QNH (ft)</listEntry>
+                <listEntry value="4">Vitesse sol (kt)</listEntry>
+                <listEntry value="5">Route GPS (°)</listEntry>
+                <listEntry value="6">Vitesse verticale (ft/min)</listEntry>
+                <listEntry value="7">Latitude</listEntry>
+                <listEntry value="8">Longitude</listEntry>
+                <listEntry value="9">Heure UTC</listEntry>
+                <listEntry value="10">Heure locale</listEntry>
+                <listEntry value="11">Batterie (%)</listEntry>
+                <listEntry value="12">Pression (hPa)</listEntry>
+                <listEntry value="13">Précision GPS</listEntry>
+                <listEntry value="14">Température ext. (°C)</listEntry>
+                <listEntry value="15">Altitude densité (ft)</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.slotP4BD" title="Page 4 - Bas Droite">
+            <settingConfig type="list">
+                <listEntry value="0">Aucun</listEntry>
+                <listEntry value="1">Altitude GPS (ft)</listEntry>
+                <listEntry value="2">Altitude QNH (ft)</listEntry>
+                <listEntry value="3">Alt GPS + QNH (ft)</listEntry>
+                <listEntry value="4">Vitesse sol (kt)</listEntry>
+                <listEntry value="5">Route GPS (°)</listEntry>
+                <listEntry value="6">Vitesse verticale (ft/min)</listEntry>
+                <listEntry value="7">Latitude</listEntry>
+                <listEntry value="8">Longitude</listEntry>
+                <listEntry value="9">Heure UTC</listEntry>
+                <listEntry value="10">Heure locale</listEntry>
+                <listEntry value="11">Batterie (%)</listEntry>
+                <listEntry value="12">Pression (hPa)</listEntry>
+                <listEntry value="13">Précision GPS</listEntry>
+                <listEntry value="14">Température ext. (°C)</listEntry>
+                <listEntry value="15">Altitude densité (ft)</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.slotTOP" title="Bandeau Haut (permanent)">
+            <settingConfig type="list">
+                <listEntry value="0">Aucun</listEntry>
+                <listEntry value="1">Altitude GPS (ft)</listEntry>
+                <listEntry value="2">Altitude QNH (ft)</listEntry>
+                <listEntry value="3">Alt GPS + QNH (ft)</listEntry>
+                <listEntry value="4">Vitesse sol (kt)</listEntry>
+                <listEntry value="5">Route GPS (°)</listEntry>
+                <listEntry value="6">Vitesse verticale (ft/min)</listEntry>
+                <listEntry value="7">Latitude</listEntry>
+                <listEntry value="8">Longitude</listEntry>
+                <listEntry value="9">Heure UTC</listEntry>
+                <listEntry value="10">Heure locale</listEntry>
+                <listEntry value="11">Batterie (%)</listEntry>
+                <listEntry value="12">Pression (hPa)</listEntry>
+                <listEntry value="13">Précision GPS</listEntry>
+                <listEntry value="14">Température ext. (°C)</listEntry>
+                <listEntry value="15">Altitude densité (ft)</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.slotBOT" title="Bandeau Bas (permanent)">
+            <settingConfig type="list">
+                <listEntry value="0">Aucun</listEntry>
+                <listEntry value="1">Altitude GPS (ft)</listEntry>
+                <listEntry value="2">Altitude QNH (ft)</listEntry>
+                <listEntry value="3">Alt GPS + QNH (ft)</listEntry>
+                <listEntry value="4">Vitesse sol (kt)</listEntry>
+                <listEntry value="5">Route GPS (°)</listEntry>
+                <listEntry value="6">Vitesse verticale (ft/min)</listEntry>
+                <listEntry value="7">Latitude</listEntry>
+                <listEntry value="8">Longitude</listEntry>
+                <listEntry value="9">Heure UTC</listEntry>
+                <listEntry value="10">Heure locale</listEntry>
+                <listEntry value="11">Batterie (%)</listEntry>
+                <listEntry value="12">Pression (hPa)</listEntry>
+                <listEntry value="13">Précision GPS</listEntry>
+                <listEntry value="14">Température ext. (°C)</listEntry>
+                <listEntry value="15">Altitude densité (ft)</listEntry>
             </settingConfig>
         </setting>
 

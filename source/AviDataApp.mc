@@ -3,53 +3,33 @@ using Toybox.WatchUi as Ui;
 using Toybox.Position;
 using Toybox.System;
 
-// Data field type constants
+// Data field type constants — match settings list values
 enum {
-    DF_GPS_ALT = 0,
-    DF_QNH_ALT = 1,
-    DF_GROUND_SPEED = 2,
-    DF_GPS_TRACK = 3,
-    DF_V_SPEED = 4,
-    DF_LAT = 5,
-    DF_LON = 6,
-    DF_UTC_TIME = 7,
-    DF_LOCAL_TIME = 8,
-    DF_BATTERY = 9,
-    DF_PRESSURE = 10,
-    DF_GPS_ACCURACY = 11,
-    DF_OAT = 12,
-    DF_DENSITY_ALT = 13,
-    DF_COUNT = 14
+    DF_NONE = 0,
+    DF_GPS_ALT = 1,
+    DF_QNH_ALT = 2,
+    DF_GPS_QNH_ALT = 3,
+    DF_GROUND_SPEED = 4,
+    DF_GPS_TRACK = 5,
+    DF_V_SPEED = 6,
+    DF_LAT = 7,
+    DF_LON = 8,
+    DF_UTC_TIME = 9,
+    DF_LOCAL_TIME = 10,
+    DF_BATTERY = 11,
+    DF_PRESSURE = 12,
+    DF_GPS_ACCURACY = 13,
+    DF_OAT = 14,
+    DF_DENSITY_ALT = 15
 }
 
-enum {
-    POS_NA = 0,
-    POS_TOP = 17,
-    POS_BOT = 18
-}
-
-enum {
-    QUAD_HG = 0,
-    QUAD_HD = 1,
-    QUAD_BG = 2,
-    QUAD_BD = 3
-}
-
-var PROP_KEYS = [
-    "posGpsAlt",
-    "posQnhAlt",
-    "posGroundSpeed",
-    "posGpsTrack",
-    "posVSpeed",
-    "posLat",
-    "posLon",
-    "posUtcTime",
-    "posLocalTime",
-    "posBattery",
-    "posPressure",
-    "posGpsAccuracy",
-    "posOat",
-    "posDensityAlt"
+// Slot property keys ordered: P1HG..P4BD, TOP, BOT
+var SLOT_KEYS = [
+    "slotP1HG", "slotP1HD", "slotP1BG", "slotP1BD",
+    "slotP2HG", "slotP2HD", "slotP2BG", "slotP2BD",
+    "slotP3HG", "slotP3HD", "slotP3BG", "slotP3BD",
+    "slotP4HG", "slotP4HD", "slotP4BG", "slotP4BD",
+    "slotTOP", "slotBOT"
 ];
 
 class AviDataApp extends Application.AppBase {

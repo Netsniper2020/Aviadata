@@ -1,26 +1,25 @@
 <?xml version="1.0"?>
 <resources>
     <properties>
-        <!-- Position assignments: 0=NA, 1=P1HG,2=P1HD,3=P1BG,4=P1BD, 5=P2HG..8=P2BD, 9=P3HG..12=P3BD, 13=P4HG..16=P4BD, 17=TOP, 18=BOT -->
-        <property id="posGpsAlt"       type="number">1</property>   <!-- P1HG -->
-        <property id="posQnhAlt"       type="number">2</property>   <!-- P1HD -->
-        <property id="posGroundSpeed"   type="number">3</property>   <!-- P1BG -->
-        <property id="posGpsTrack"      type="number">4</property>   <!-- P1BD -->
-        <property id="posVSpeed"        type="number">0</property>   <!-- NA -->
-        <property id="posLat"           type="number">0</property>
-        <property id="posLon"           type="number">0</property>
-        <property id="posUtcTime"       type="number">0</property>
-        <property id="posLocalTime"     type="number">0</property>
-        <property id="posBattery"       type="number">0</property>
-        <property id="posPressure"      type="number">0</property>
-        <property id="posGpsAccuracy"   type="number">0</property>
-        <property id="posOat"           type="number">0</property>
-        <property id="posDensityAlt"    type="number">0</property>
-
-        <!-- QNH in hPa (integer) -->
-        <property id="qnhValue"        type="number">1013</property>
-
-        <!-- Show GPS track indicator at top of each page -->
-        <property id="showTrackTop"     type="boolean">true</property>
+        <property id="slotP1HG" type="number">1</property>
+        <property id="slotP1HD" type="number">2</property>
+        <property id="slotP1BG" type="number">4</property>
+        <property id="slotP1BD" type="number">5</property>
+        <property id="slotP2HG" type="number">0</property>
+        <property id="slotP2HD" type="number">0</property>
+        <property id="slotP2BG" type="number">0</property>
+        <property id="slotP2BD" type="number">0</property>
+        <property id="slotP3HG" type="number">0</property>
+        <property id="slotP3HD" type="number">0</property>
+        <property id="slotP3BG" type="number">0</property>
+        <property id="slotP3BD" type="number">0</property>
+        <property id="slotP4HG" type="number">0</property>
+        <property id="slotP4HD" type="number">0</property>
+        <property id="slotP4BG" type="number">0</property>
+        <property id="slotP4BD" type="number">0</property>
+        <property id="slotTOP" type="number">0</property>
+        <property id="slotBOT" type="number">0</property>
+        <property id="qnhValue" type="number">1013</property>
+        <property id="showTrackTop" type="boolean">true</property>
     </properties>
 </resources>
