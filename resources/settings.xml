@@ -1,0 +1,352 @@
+<?xml version="1.0"?>
+<resources>
+    <settings>
+
+        <!-- ============ GENERAL ============ -->
+        <setting propertyKey="@Properties.qnhValue" title="@Strings.setQnhTitle">
+            <settingConfig type="numeric" min="900" max="1100"/>
+        </setting>
+
+        <setting propertyKey="@Properties.showTrackTop" title="@Strings.setShowTrackTitle">
+            <settingConfig type="boolean"/>
+        </setting>
+
+        <!-- ============ DATA POSITIONS ============ -->
+        <setting propertyKey="@Properties.posGpsAlt" title="@Strings.setGpsAltTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.posNA</listEntry>
+                <listEntry value="1">@Strings.posP1HG</listEntry>
+                <listEntry value="2">@Strings.posP1HD</listEntry>
+                <listEntry value="3">@Strings.posP1BG</listEntry>
+                <listEntry value="4">@Strings.posP1BD</listEntry>
+                <listEntry value="5">@Strings.posP2HG</listEntry>
+                <listEntry value="6">@Strings.posP2HD</listEntry>
+                <listEntry value="7">@Strings.posP2BG</listEntry>
+                <listEntry value="8">@Strings.posP2BD</listEntry>
+                <listEntry value="9">@Strings.posP3HG</listEntry>
+                <listEntry value="10">@Strings.posP3HD</listEntry>
+                <listEntry value="11">@Strings.posP3BG</listEntry>
+                <listEntry value="12">@Strings.posP3BD</listEntry>
+                <listEntry value="13">@Strings.posP4HG</listEntry>
+                <listEntry value="14">@Strings.posP4HD</listEntry>
+                <listEntry value="15">@Strings.posP4BG</listEntry>
+                <listEntry value="16">@Strings.posP4BD</listEntry>
+                <listEntry value="17">@Strings.posTOP</listEntry>
+                <listEntry value="18">@Strings.posBOT</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.posQnhAlt" title="@Strings.setQnhAltTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.posNA</listEntry>
+                <listEntry value="1">@Strings.posP1HG</listEntry>
+                <listEntry value="2">@Strings.posP1HD</listEntry>
+                <listEntry value="3">@Strings.posP1BG</listEntry>
+                <listEntry value="4">@Strings.posP1BD</listEntry>
+                <listEntry value="5">@Strings.posP2HG</listEntry>
+                <listEntry value="6">@Strings.posP2HD</listEntry>
+                <listEntry value="7">@Strings.posP2BG</listEntry>
+                <listEntry value="8">@Strings.posP2BD</listEntry>
+                <listEntry value="9">@Strings.posP3HG</listEntry>
+                <listEntry value="10">@Strings.posP3HD</listEntry>
+                <listEntry value="11">@Strings.posP3BG</listEntry>
+                <listEntry value="12">@Strings.posP3BD</listEntry>
+                <listEntry value="13">@Strings.posP4HG</listEntry>
+                <listEntry value="14">@Strings.posP4HD</listEntry>
+                <listEntry value="15">@Strings.posP4BG</listEntry>
+                <listEntry value="16">@Strings.posP4BD</listEntry>
+                <listEntry value="17">@Strings.posTOP</listEntry>
+                <listEntry value="18">@Strings.posBOT</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.posGroundSpeed" title="@Strings.setGsTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.posNA</listEntry>
+                <listEntry value="1">@Strings.posP1HG</listEntry>
+                <listEntry value="2">@Strings.posP1HD</listEntry>
+                <listEntry value="3">@Strings.posP1BG</listEntry>
+                <listEntry value="4">@Strings.posP1BD</listEntry>
+                <listEntry value="5">@Strings.posP2HG</listEntry>
+                <listEntry value="6">@Strings.posP2HD</listEntry>
+                <listEntry value="7">@Strings.posP2BG</listEntry>
+                <listEntry value="8">@Strings.posP2BD</listEntry>
+                <listEntry value="9">@Strings.posP3HG</listEntry>
+                <listEntry value="10">@Strings.posP3HD</listEntry>
+                <listEntry value="11">@Strings.posP3BG</listEntry>
+                <listEntry value="12">@Strings.posP3BD</listEntry>
+                <listEntry value="13">@Strings.posP4HG</listEntry>
+                <listEntry value="14">@Strings.posP4HD</listEntry>
+                <listEntry value="15">@Strings.posP4BG</listEntry>
+                <listEntry value="16">@Strings.posP4BD</listEntry>
+                <listEntry value="17">@Strings.posTOP</listEntry>
+                <listEntry value="18">@Strings.posBOT</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.posGpsTrack" title="@Strings.setTrackTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.posNA</listEntry>
+                <listEntry value="1">@Strings.posP1HG</listEntry>
+                <listEntry value="2">@Strings.posP1HD</listEntry>
+                <listEntry value="3">@Strings.posP1BG</listEntry>
+                <listEntry value="4">@Strings.posP1BD</listEntry>
+                <listEntry value="5">@Strings.posP2HG</listEntry>
+                <listEntry value="6">@Strings.posP2HD</listEntry>
+                <listEntry value="7">@Strings.posP2BG</listEntry>
+                <listEntry value="8">@Strings.posP2BD</listEntry>
+                <listEntry value="9">@Strings.posP3HG</listEntry>
+                <listEntry value="10">@Strings.posP3HD</listEntry>
+                <listEntry value="11">@Strings.posP3BG</listEntry>
+                <listEntry value="12">@Strings.posP3BD</listEntry>
+                <listEntry value="13">@Strings.posP4HG</listEntry>
+                <listEntry value="14">@Strings.posP4HD</listEntry>
+                <listEntry value="15">@Strings.posP4BG</listEntry>
+                <listEntry value="16">@Strings.posP4BD</listEntry>
+                <listEntry value="17">@Strings.posTOP</listEntry>
+                <listEntry value="18">@Strings.posBOT</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.posVSpeed" title="@Strings.setVSpeedTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.posNA</listEntry>
+                <listEntry value="1">@Strings.posP1HG</listEntry>
+                <listEntry value="2">@Strings.posP1HD</listEntry>
+                <listEntry value="3">@Strings.posP1BG</listEntry>
+                <listEntry value="4">@Strings.posP1BD</listEntry>
+                <listEntry value="5">@Strings.posP2HG</listEntry>
+                <listEntry value="6">@Strings.posP2HD</listEntry>
+                <listEntry value="7">@Strings.posP2BG</listEntry>
+                <listEntry value="8">@Strings.posP2BD</listEntry>
+                <listEntry value="9">@Strings.posP3HG</listEntry>
+                <listEntry value="10">@Strings.posP3HD</listEntry>
+                <listEntry value="11">@Strings.posP3BG</listEntry>
+                <listEntry value="12">@Strings.posP3BD</listEntry>
+                <listEntry value="13">@Strings.posP4HG</listEntry>
+                <listEntry value="14">@Strings.posP4HD</listEntry>
+                <listEntry value="15">@Strings.posP4BG</listEntry>
+                <listEntry value="16">@Strings.posP4BD</listEntry>
+                <listEntry value="17">@Strings.posTOP</listEntry>
+                <listEntry value="18">@Strings.posBOT</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.posLat" title="@Strings.setLatTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.posNA</listEntry>
+                <listEntry value="1">@Strings.posP1HG</listEntry>
+                <listEntry value="2">@Strings.posP1HD</listEntry>
+                <listEntry value="3">@Strings.posP1BG</listEntry>
+                <listEntry value="4">@Strings.posP1BD</listEntry>
+                <listEntry value="5">@Strings.posP2HG</listEntry>
+                <listEntry value="6">@Strings.posP2HD</listEntry>
+                <listEntry value="7">@Strings.posP2BG</listEntry>
+                <listEntry value="8">@Strings.posP2BD</listEntry>
+                <listEntry value="9">@Strings.posP3HG</listEntry>
+                <listEntry value="10">@Strings.posP3HD</listEntry>
+                <listEntry value="11">@Strings.posP3BG</listEntry>
+                <listEntry value="12">@Strings.posP3BD</listEntry>
+                <listEntry value="13">@Strings.posP4HG</listEntry>
+                <listEntry value="14">@Strings.posP4HD</listEntry>
+                <listEntry value="15">@Strings.posP4BG</listEntry>
+                <listEntry value="16">@Strings.posP4BD</listEntry>
+                <listEntry value="17">@Strings.posTOP</listEntry>
+                <listEntry value="18">@Strings.posBOT</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.posLon" title="@Strings.setLonTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.posNA</listEntry>
+                <listEntry value="1">@Strings.posP1HG</listEntry>
+                <listEntry value="2">@Strings.posP1HD</listEntry>
+                <listEntry value="3">@Strings.posP1BG</listEntry>
+                <listEntry value="4">@Strings.posP1BD</listEntry>
+                <listEntry value="5">@Strings.posP2HG</listEntry>
+                <listEntry value="6">@Strings.posP2HD</listEntry>
+                <listEntry value="7">@Strings.posP2BG</listEntry>
+                <listEntry value="8">@Strings.posP2BD</listEntry>
+                <listEntry value="9">@Strings.posP3HG</listEntry>
+                <listEntry value="10">@Strings.posP3HD</listEntry>
+                <listEntry value="11">@Strings.posP3BG</listEntry>
+                <listEntry value="12">@Strings.posP3BD</listEntry>
+                <listEntry value="13">@Strings.posP4HG</listEntry>
+                <listEntry value="14">@Strings.posP4HD</listEntry>
+                <listEntry value="15">@Strings.posP4BG</listEntry>
+                <listEntry value="16">@Strings.posP4BD</listEntry>
+                <listEntry value="17">@Strings.posTOP</listEntry>
+                <listEntry value="18">@Strings.posBOT</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.posUtcTime" title="@Strings.setUtcTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.posNA</listEntry>
+                <listEntry value="1">@Strings.posP1HG</listEntry>
+                <listEntry value="2">@Strings.posP1HD</listEntry>
+                <listEntry value="3">@Strings.posP1BG</listEntry>
+                <listEntry value="4">@Strings.posP1BD</listEntry>
+                <listEntry value="5">@Strings.posP2HG</listEntry>
+                <listEntry value="6">@Strings.posP2HD</listEntry>
+                <listEntry value="7">@Strings.posP2BG</listEntry>
+                <listEntry value="8">@Strings.posP2BD</listEntry>
+                <listEntry value="9">@Strings.posP3HG</listEntry>
+                <listEntry value="10">@Strings.posP3HD</listEntry>
+                <listEntry value="11">@Strings.posP3BG</listEntry>
+                <listEntry value="12">@Strings.posP3BD</listEntry>
+                <listEntry value="13">@Strings.posP4HG</listEntry>
+                <listEntry value="14">@Strings.posP4HD</listEntry>
+                <listEntry value="15">@Strings.posP4BG</listEntry>
+                <listEntry value="16">@Strings.posP4BD</listEntry>
+                <listEntry value="17">@Strings.posTOP</listEntry>
+                <listEntry value="18">@Strings.posBOT</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.posLocalTime" title="@Strings.setLocalTimeTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.posNA</listEntry>
+                <listEntry value="1">@Strings.posP1HG</listEntry>
+                <listEntry value="2">@Strings.posP1HD</listEntry>
+                <listEntry value="3">@Strings.posP1BG</listEntry>
+                <listEntry value="4">@Strings.posP1BD</listEntry>
+                <listEntry value="5">@Strings.posP2HG</listEntry>
+                <listEntry value="6">@Strings.posP2HD</listEntry>
+                <listEntry value="7">@Strings.posP2BG</listEntry>
+                <listEntry value="8">@Strings.posP2BD</listEntry>
+                <listEntry value="9">@Strings.posP3HG</listEntry>
+                <listEntry value="10">@Strings.posP3HD</listEntry>
+                <listEntry value="11">@Strings.posP3BG</listEntry>
+                <listEntry value="12">@Strings.posP3BD</listEntry>
+                <listEntry value="13">@Strings.posP4HG</listEntry>
+                <listEntry value="14">@Strings.posP4HD</listEntry>
+                <listEntry value="15">@Strings.posP4BG</listEntry>
+                <listEntry value="16">@Strings.posP4BD</listEntry>
+                <listEntry value="17">@Strings.posTOP</listEntry>
+                <listEntry value="18">@Strings.posBOT</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.posBattery" title="@Strings.setBattTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.posNA</listEntry>
+                <listEntry value="1">@Strings.posP1HG</listEntry>
+                <listEntry value="2">@Strings.posP1HD</listEntry>
+                <listEntry value="3">@Strings.posP1BG</listEntry>
+                <listEntry value="4">@Strings.posP1BD</listEntry>
+                <listEntry value="5">@Strings.posP2HG</listEntry>
+                <listEntry value="6">@Strings.posP2HD</listEntry>
+                <listEntry value="7">@Strings.posP2BG</listEntry>
+                <listEntry value="8">@Strings.posP2BD</listEntry>
+                <listEntry value="9">@Strings.posP3HG</listEntry>
+                <listEntry value="10">@Strings.posP3HD</listEntry>
+                <listEntry value="11">@Strings.posP3BG</listEntry>
+                <listEntry value="12">@Strings.posP3BD</listEntry>
+                <listEntry value="13">@Strings.posP4HG</listEntry>
+                <listEntry value="14">@Strings.posP4HD</listEntry>
+                <listEntry value="15">@Strings.posP4BG</listEntry>
+                <listEntry value="16">@Strings.posP4BD</listEntry>
+                <listEntry value="17">@Strings.posTOP</listEntry>
+                <listEntry value="18">@Strings.posBOT</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.posPressure" title="@Strings.setPressTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.posNA</listEntry>
+                <listEntry value="1">@Strings.posP1HG</listEntry>
+                <listEntry value="2">@Strings.posP1HD</listEntry>
+                <listEntry value="3">@Strings.posP1BG</listEntry>
+                <listEntry value="4">@Strings.posP1BD</listEntry>
+                <listEntry value="5">@Strings.posP2HG</listEntry>
+                <listEntry value="6">@Strings.posP2HD</listEntry>
+                <listEntry value="7">@Strings.posP2BG</listEntry>
+                <listEntry value="8">@Strings.posP2BD</listEntry>
+                <listEntry value="9">@Strings.posP3HG</listEntry>
+                <listEntry value="10">@Strings.posP3HD</listEntry>
+                <listEntry value="11">@Strings.posP3BG</listEntry>
+                <listEntry value="12">@Strings.posP3BD</listEntry>
+                <listEntry value="13">@Strings.posP4HG</listEntry>
+                <listEntry value="14">@Strings.posP4HD</listEntry>
+                <listEntry value="15">@Strings.posP4BG</listEntry>
+                <listEntry value="16">@Strings.posP4BD</listEntry>
+                <listEntry value="17">@Strings.posTOP</listEntry>
+                <listEntry value="18">@Strings.posBOT</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.posGpsAccuracy" title="@Strings.setGpsAccTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.posNA</listEntry>
+                <listEntry value="1">@Strings.posP1HG</listEntry>
+                <listEntry value="2">@Strings.posP1HD</listEntry>
+                <listEntry value="3">@Strings.posP1BG</listEntry>
+                <listEntry value="4">@Strings.posP1BD</listEntry>
+                <listEntry value="5">@Strings.posP2HG</listEntry>
+                <listEntry value="6">@Strings.posP2HD</listEntry>
+                <listEntry value="7">@Strings.posP2BG</listEntry>
+                <listEntry value="8">@Strings.posP2BD</listEntry>
+                <listEntry value="9">@Strings.posP3HG</listEntry>
+                <listEntry value="10">@Strings.posP3HD</listEntry>
+                <listEntry value="11">@Strings.posP3BG</listEntry>
+                <listEntry value="12">@Strings.posP3BD</listEntry>
+                <listEntry value="13">@Strings.posP4HG</listEntry>
+                <listEntry value="14">@Strings.posP4HD</listEntry>
+                <listEntry value="15">@Strings.posP4BG</listEntry>
+                <listEntry value="16">@Strings.posP4BD</listEntry>
+                <listEntry value="17">@Strings.posTOP</listEntry>
+                <listEntry value="18">@Strings.posBOT</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.posOat" title="@Strings.setOatTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.posNA</listEntry>
+                <listEntry value="1">@Strings.posP1HG</listEntry>
+                <listEntry value="2">@Strings.posP1HD</listEntry>
+                <listEntry value="3">@Strings.posP1BG</listEntry>
+                <listEntry value="4">@Strings.posP1BD</listEntry>
+                <listEntry value="5">@Strings.posP2HG</listEntry>
+                <listEntry value="6">@Strings.posP2HD</listEntry>
+                <listEntry value="7">@Strings.posP2BG</listEntry>
+                <listEntry value="8">@Strings.posP2BD</listEntry>
+                <listEntry value="9">@Strings.posP3HG</listEntry>
+                <listEntry value="10">@Strings.posP3HD</listEntry>
+                <listEntry value="11">@Strings.posP3BG</listEntry>
+                <listEntry value="12">@Strings.posP3BD</listEntry>
+                <listEntry value="13">@Strings.posP4HG</listEntry>
+                <listEntry value="14">@Strings.posP4HD</listEntry>
+                <listEntry value="15">@Strings.posP4BG</listEntry>
+                <listEntry value="16">@Strings.posP4BD</listEntry>
+                <listEntry value="17">@Strings.posTOP</listEntry>
+                <listEntry value="18">@Strings.posBOT</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.posDensityAlt" title="@Strings.setDensAltTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.posNA</listEntry>
+                <listEntry value="1">@Strings.posP1HG</listEntry>
+                <listEntry value="2">@Strings.posP1HD</listEntry>
+                <listEntry value="3">@Strings.posP1BG</listEntry>
+                <listEntry value="4">@Strings.posP1BD</listEntry>
+                <listEntry value="5">@Strings.posP2HG</listEntry>
+                <listEntry value="6">@Strings.posP2HD</listEntry>
+                <listEntry value="7">@Strings.posP2BG</listEntry>
+                <listEntry value="8">@Strings.posP2BD</listEntry>
+                <listEntry value="9">@Strings.posP3HG</listEntry>
+                <listEntry value="10">@Strings.posP3HD</listEntry>
+                <listEntry value="11">@Strings.posP3BG</listEntry>
+                <listEntry value="12">@Strings.posP3BD</listEntry>
+                <listEntry value="13">@Strings.posP4HG</listEntry>
+                <listEntry value="14">@Strings.posP4HD</listEntry>
+                <listEntry value="15">@Strings.posP4BG</listEntry>
+                <listEntry value="16">@Strings.posP4BD</listEntry>
+                <listEntry value="17">@Strings.posTOP</listEntry>
+                <listEntry value="18">@Strings.posBOT</listEntry>
+            </settingConfig>
+        </setting>
+
+    </settings>
+</resources>
