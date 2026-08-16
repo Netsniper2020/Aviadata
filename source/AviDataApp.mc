@@ -22,23 +22,19 @@ enum {
     DF_COUNT = 14
 }
 
-// Position constants
 enum {
     POS_NA = 0,
-    // 1..16 = page quadrants (see posToPage/posToQuad)
     POS_TOP = 17,
     POS_BOT = 18
 }
 
-// Quadrant indices within a page
 enum {
-    QUAD_HG = 0,  // Haut Gauche
-    QUAD_HD = 1,  // Haut Droite
-    QUAD_BG = 2,  // Bas Gauche
-    QUAD_BD = 3   // Bas Droite
+    QUAD_HG = 0,
+    QUAD_HD = 1,
+    QUAD_BG = 2,
+    QUAD_BD = 3
 }
 
-// Property keys ordered by DF_* enum
 var PROP_KEYS = [
     "posGpsAlt",
     "posQnhAlt",
@@ -66,14 +62,14 @@ class AviDataApp extends Application.AppBase {
     }
 
     function onStart(state) {
-        Position.enableLocationEvents(Position.LOCATION_CONTINUOUS, method(:onPosition));
+        Position.enableLocationEvents(Position.LOCATION_CONTINUOUS, method(:onPosition) as Method(info as Position.Info) as Void);
     }
 
     function onStop(state) {
-        Position.enableLocationEvents(Position.LOCATION_DISABLE, method(:onPosition));
+        Position.enableLocationEvents(Position.LOCATION_DISABLE, method(:onPosition) as Method(info as Position.Info) as Void);
     }
 
-    function onPosition(info) {
+    function onPosition(info as Position.Info) as Void {
         posInfo = info;
         if (info != null && info.accuracy != null && info.accuracy >= Position.QUALITY_LAST_KNOWN) {
             hasGps = true;

@@ -9,43 +9,26 @@ using Toybox.Sensor;
 
 class DataProvider {
 
-    // Returns [label, value, unit] for a given data field type
-    // value is "NoGPS" when GPS is required but unavailable
     static function getFieldData(dfType, posInfo, hasGps, qnhHpa) {
         switch (dfType) {
-            case DF_GPS_ALT:
-                return getGpsAlt(posInfo, hasGps);
-            case DF_QNH_ALT:
-                return getQnhAlt(posInfo, hasGps, qnhHpa);
-            case DF_GROUND_SPEED:
-                return getGroundSpeed(posInfo, hasGps);
-            case DF_GPS_TRACK:
-                return getGpsTrack(posInfo, hasGps);
-            case DF_V_SPEED:
-                return getVSpeed();
-            case DF_LAT:
-                return getLat(posInfo, hasGps);
-            case DF_LON:
-                return getLon(posInfo, hasGps);
-            case DF_UTC_TIME:
-                return getUtcTime();
-            case DF_LOCAL_TIME:
-                return getLocalTime();
-            case DF_BATTERY:
-                return getBattery();
-            case DF_PRESSURE:
-                return getPressure();
-            case DF_GPS_ACCURACY:
-                return getGpsAccuracy(posInfo, hasGps);
-            case DF_OAT:
-                return getOat();
-            case DF_DENSITY_ALT:
-                return getDensityAlt(posInfo, hasGps, qnhHpa);
+            case DF_GPS_ALT:      return getGpsAlt(posInfo, hasGps);
+            case DF_QNH_ALT:      return getQnhAlt(posInfo, hasGps, qnhHpa);
+            case DF_GROUND_SPEED: return getGroundSpeed(posInfo, hasGps);
+            case DF_GPS_TRACK:    return getGpsTrack(posInfo, hasGps);
+            case DF_V_SPEED:      return getVSpeed();
+            case DF_LAT:          return getLat(posInfo, hasGps);
+            case DF_LON:          return getLon(posInfo, hasGps);
+            case DF_UTC_TIME:     return getUtcTime();
+            case DF_LOCAL_TIME:   return getLocalTime();
+            case DF_BATTERY:      return getBattery();
+            case DF_PRESSURE:     return getPressure();
+            case DF_GPS_ACCURACY: return getGpsAccuracy(posInfo, hasGps);
+            case DF_OAT:          return getOat();
+            case DF_DENSITY_ALT:  return getDensityAlt(posInfo, hasGps, qnhHpa);
+            default:              return ["---", "---", ""];
         }
-        return ["---", "---", ""];
     }
 
-    // Short label for a data field
     static function getLabel(dfType) {
         switch (dfType) {
             case DF_GPS_ALT:      return "ALT GPS";
@@ -62,11 +45,9 @@ class DataProvider {
             case DF_GPS_ACCURACY: return "GPS";
             case DF_OAT:          return "OAT";
             case DF_DENSITY_ALT:  return "DA";
+            default:              return "?";
         }
-        return "?";
     }
-
-    //--- Individual field implementations ---
 
     static function getGpsAlt(posInfo, hasGps) {
         if (!hasGps || posInfo == null || posInfo.altitude == null) {
@@ -77,19 +58,16 @@ class DataProvider {
     }
 
     static function getQnhAlt(posInfo, hasGps, qnhHpa) {
-        // Try barometric pressure first
         var pressure = null;
         var actInfo = Activity.getActivityInfo();
         if (actInfo != null && actInfo has :ambientPressure && actInfo.ambientPressure != null) {
-            pressure = actInfo.ambientPressure / 100.0f; // Pa -> hPa
+            pressure = actInfo.ambientPressure / 100.0f;
         }
         if (pressure != null && pressure > 100.0f && qnhHpa > 0) {
-            // ISA formula: h(ft) = 145366.45 * (1 - (P/QNH)^0.190284)
             var ratio = pressure / qnhHpa.toFloat();
             var altFt = (145366.45f * (1.0f - Math.pow(ratio, 0.190284f))).toNumber();
             return ["ALT QNH", altFt.toString(), "ft"];
         }
-        // Fallback: GPS alt + QNH correction
         if (!hasGps || posInfo == null || posInfo.altitude == null) {
             return ["ALT QNH", "NoGPS", "ft"];
         }
@@ -103,7 +81,6 @@ class DataProvider {
         if (!hasGps || posInfo == null || posInfo.speed == null) {
             return ["GS", "NoGPS", "kt"];
         }
-        // m/s -> knots (1 kt = 0.514444 m/s)
         var kts = (posInfo.speed / 0.514444f).toNumber();
         return ["GS", kts.toString(), "kt"];
     }
@@ -118,15 +95,7 @@ class DataProvider {
     }
 
     static function getVSpeed() {
-        var actInfo = Activity.getActivityInfo();
-        if (actInfo == null) {
-            return ["VS", "---", "ft/m"];
-        }
-        // Try altitude change rate if available
-        if (actInfo has :currentSpeed && actInfo.currentSpeed != null) {
-            // Many devices expose vertical speed via Activity
-        }
-        // Use altitude from activity for vspeed if available
+        // Vertical speed requires activity recording or computed from GPS alt delta
         return ["VS", "---", "ft/m"];
     }
 
@@ -140,8 +109,7 @@ class DataProvider {
         if (lat < 0) { lat = -lat; }
         var deg = lat.toNumber();
         var minRaw = (lat - deg) * 60.0f;
-        var min = minRaw.format("%06.3f");
-        return ["LAT", ns + deg.toString() + "\u00B0" + min, ""];
+        return ["LAT", ns + deg.toString() + "\u00B0" + minRaw.format("%06.3f"), ""];
     }
 
     static function getLon(posInfo, hasGps) {
@@ -154,18 +122,17 @@ class DataProvider {
         if (lon < 0) { lon = -lon; }
         var deg = lon.toNumber();
         var minRaw = (lon - deg) * 60.0f;
-        var min = minRaw.format("%06.3f");
-        return ["LON", ew + deg.format("%03d") + "\u00B0" + min, ""];
+        return ["LON", ew + deg.format("%03d") + "\u00B0" + minRaw.format("%06.3f"), ""];
     }
 
     static function getUtcTime() {
-        var now = Gregorian.utcInfo(Time.now(), Gregorian.FORMAT_SHORT);
+        var now = Gregorian.utcInfo(Time.now(), Time.FORMAT_MEDIUM);
         var str = now.hour.format("%02d") + ":" + now.min.format("%02d") + ":" + now.sec.format("%02d");
         return ["UTC", str, ""];
     }
 
     static function getLocalTime() {
-        var now = Gregorian.info(Time.now(), Gregorian.FORMAT_SHORT);
+        var now = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
         var str = now.hour.format("%02d") + ":" + now.min.format("%02d");
         return ["LCL", str, ""];
     }
@@ -211,8 +178,6 @@ class DataProvider {
     }
 
     static function getDensityAlt(posInfo, hasGps, qnhHpa) {
-        // DA = PA + (120 * (OAT - ISA_temp))
-        // PA from pressure, ISA_temp = 15 - 2*PA/1000
         var pressure = null;
         var actInfo = Activity.getActivityInfo();
         if (actInfo != null && actInfo has :ambientPressure && actInfo.ambientPressure != null) {
@@ -224,9 +189,8 @@ class DataProvider {
             oat = sensorInfo.temperature.toFloat();
         }
         if (pressure != null && pressure > 100.0f && oat != null) {
-            // Pressure altitude (ft) with standard QNH 1013.25
             var paFt = 145366.45f * (1.0f - Math.pow(pressure / 1013.25f, 0.190284f));
-            var isaTemp = 15.0f - 0.001981f * paFt; // ~2°C/1000ft
+            var isaTemp = 15.0f - 0.001981f * paFt;
             var da = (paFt + 120.0f * (oat - isaTemp)).toNumber();
             return ["DA", da.toString(), "ft"];
         }
