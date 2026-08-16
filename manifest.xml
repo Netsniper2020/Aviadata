@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <iq:manifest xmlns:iq="http://www.garmin.com/xml/connectiq" version="4">
-    <iq:application id="a1b2c3d4-avi-data-app-0001" type="watch-app"
+    <iq:application id="5cbdf307-c7fa-45fe-b059-2c760f7d2892" type="watch-app"
         name="@Strings.AppName" entry="AviDataApp"
         launcherIcon="@Drawables.LauncherIcon"
         minApiLevel="4.0.0">
