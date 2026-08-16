@@ -1,0 +1,51 @@
+name: Build AviData
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Connect IQ SDK
+        run: |
+          sudo apt-get update && sudo apt-get install -y unzip wget openjdk-17-jdk
+          wget -q https://developer.garmin.com/downloads/connect-iq/sdk-manager/connectiq-sdk-manager-linux.zip -O /tmp/sdkmanager.zip
+          mkdir -p $HOME/ciq-manager
+          unzip -q /tmp/sdkmanager.zip -d $HOME/ciq-manager
+          chmod +x $HOME/ciq-manager/bin/sdkmanager
+
+      - name: Download SDK and device files
+        run: |
+          export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+          $HOME/ciq-manager/bin/sdkmanager login <<< "${{ secrets.GARMIN_USERNAME }}
+          ${{ secrets.GARMIN_PASSWORD }}"
+          $HOME/ciq-manager/bin/sdkmanager download-sdk 7.4.3
+          $HOME/ciq-manager/bin/sdkmanager download-device fenix7 5.00
+          $HOME/ciq-manager/bin/sdkmanager download-device fr965 3.00
+
+      - name: Set up developer key
+        run: |
+          echo "${{ secrets.GARMIN_DEV_KEY }}" | base64 -d > /tmp/developer_key.der
+
+      - name: Build
+        run: |
+          export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+          SDK_PATH=$(find $HOME/.Garmin/ConnectIQ/Sdks -maxdepth 1 -type d -name 'connectiq-sdk*' | head -1)
+          export PATH="$SDK_PATH/bin:$PATH"
+          monkeyc -o bin/AviData.prg \
+            -f monkey.jungle \
+            -y /tmp/developer_key.der \
+            -d fenix7 \
+            -w
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: AviData-prg
+          path: bin/AviData.prg
