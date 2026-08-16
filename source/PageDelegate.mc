@@ -1,8 +1,12 @@
 using Toybox.WatchUi as Ui;
 using Toybox.System;
+using Toybox.Lang;
 
 class PageDelegate extends Ui.BehaviorDelegate {
     var _view;
+    var _lastTapTime = 0;
+    var _lastTapField = -1;
+    const DOUBLE_TAP_MS = 500;
 
     function initialize(view) {
         BehaviorDelegate.initialize();
@@ -21,8 +25,37 @@ class PageDelegate extends Ui.BehaviorDelegate {
         return false;
     }
 
+    function onTap(clickEvent) {
+        var coords = clickEvent.getCoordinates();
+        var tapX = coords[0];
+        var tapY = coords[1];
+
+        var field = _view.getFieldAtPosition(tapX, tapY);
+        var now = System.getTimer();
+
+        if (field == _lastTapField && field != -1 && (now - _lastTapTime) < DOUBLE_TAP_MS) {
+            // Double tap detected
+            _lastTapTime = 0;
+            _lastTapField = -1;
+            return handleDoubleTap(field);
+        }
+
+        _lastTapTime = now;
+        _lastTapField = field;
+        return false;
+    }
+
+    function handleDoubleTap(field) {
+        if (field == DF_QNH_ALT) {
+            // Open QNH input
+            var qnhView = new QnhInputView(_view);
+            Ui.pushView(qnhView, new QnhInputDelegate(qnhView, _view), Ui.SLIDE_UP);
+            return true;
+        }
+        return false;
+    }
+
     function onBack() {
-        // Exit the app
         System.exit();
         return true;
     }

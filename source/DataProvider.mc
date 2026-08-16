@@ -95,7 +95,6 @@ class DataProvider {
     }
 
     static function getVSpeed() {
-        // Vertical speed requires activity recording or computed from GPS alt delta
         return ["VS", "---", "ft/m"];
     }
 
@@ -128,12 +127,12 @@ class DataProvider {
     static function getUtcTime() {
         var now = Gregorian.utcInfo(Time.now(), Time.FORMAT_MEDIUM);
         var str = now.hour.format("%02d") + ":" + now.min.format("%02d") + ":" + now.sec.format("%02d");
-        return ["UTC", str, ""];
+        return ["UTC", str, "Z"];
     }
 
     static function getLocalTime() {
         var now = Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
-        var str = now.hour.format("%02d") + ":" + now.min.format("%02d");
+        var str = now.hour.format("%02d") + ":" + now.min.format("%02d") + ":" + now.sec.format("%02d");
         return ["LCL", str, ""];
     }
 
