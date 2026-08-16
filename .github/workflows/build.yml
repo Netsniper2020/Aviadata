@@ -30,7 +30,7 @@ jobs:
           GARMIN_PASSWORD: ${{ secrets.GARMIN_PASSWORD }}
         run: |
           connect-iq-sdk-manager agreement accept
-          connect-iq-sdk-manager login
+          connect-iq-sdk-manager login --username "$GARMIN_USERNAME" --password "$GARMIN_PASSWORD"
 
       - name: Install SDK
         run: |
