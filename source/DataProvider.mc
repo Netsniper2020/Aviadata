@@ -9,13 +9,11 @@ using Toybox.Sensor;
 
 class DataProvider {
 
-    // Returns [label, value, unit] for standard fields
-    // For DF_GPS_QNH_ALT, returns [label1, val1, label2, val2, unit]
-    static function getFieldData(dfType, posInfo, hasGps, qnhHpa) {
+    static function getFieldData(dfType, posInfo, hasGps, qnhHpa, geoidM) {
         switch (dfType) {
-            case DF_GPS_ALT:      return getGpsAlt(posInfo, hasGps);
-            case DF_QNH_ALT:      return getQnhAlt(posInfo, hasGps, qnhHpa);
-            case DF_GPS_QNH_ALT:  return getGpsQnhAlt(posInfo, hasGps, qnhHpa);
+            case DF_GPS_ALT:      return getGpsAlt(posInfo, hasGps, geoidM);
+            case DF_QNH_ALT:      return getQnhAlt(posInfo, hasGps, qnhHpa, geoidM);
+            case DF_GPS_QNH_ALT:  return getGpsQnhAlt(posInfo, hasGps, qnhHpa, geoidM);
             case DF_GROUND_SPEED: return getGroundSpeed(posInfo, hasGps);
             case DF_GPS_TRACK:    return getGpsTrack(posInfo, hasGps);
             case DF_V_SPEED:      return getVSpeed();
@@ -32,15 +30,25 @@ class DataProvider {
         }
     }
 
-    static function getGpsAlt(posInfo, hasGps) {
+    // GPS altitude corrected for geoid: MSL = ellipsoid - geoid undulation
+    static function getGpsAltMsl(posInfo, hasGps, geoidM) {
         if (!hasGps || posInfo == null || posInfo.altitude == null) {
+            return null;
+        }
+        var altMslM = posInfo.altitude - geoidM.toFloat();
+        return (altMslM * 3.28084f).toNumber();
+    }
+
+    static function getGpsAlt(posInfo, hasGps, geoidM) {
+        var altFt = getGpsAltMsl(posInfo, hasGps, geoidM);
+        if (altFt == null) {
             return ["ALT GPS", "NoGPS", "ft"];
         }
-        var altFt = (posInfo.altitude * 3.28084f).toNumber();
         return ["ALT GPS", altFt.toString(), "ft"];
     }
 
-    static function getQnhAlt(posInfo, hasGps, qnhHpa) {
+    static function getQnhAlt(posInfo, hasGps, qnhHpa, geoidM) {
+        // Prefer barometric pressure
         var pressure = null;
         var actInfo = Activity.getActivityInfo();
         if (actInfo != null && actInfo has :ambientPressure && actInfo.ambientPressure != null) {
@@ -51,19 +59,19 @@ class DataProvider {
             var altFt = (145366.45f * (1.0f - Math.pow(ratio, 0.190284f))).toNumber();
             return ["ALT QNH", altFt.toString(), "ft"];
         }
-        if (!hasGps || posInfo == null || posInfo.altitude == null) {
+        // Fallback: GPS MSL alt + QNH correction
+        var gpsAltFt = getGpsAltMsl(posInfo, hasGps, geoidM);
+        if (gpsAltFt == null) {
             return ["ALT QNH", "NoGPS", "ft"];
         }
-        var gpsAltFt = posInfo.altitude * 3.28084f;
         var correction = (qnhHpa.toFloat() - 1013.25f) * 30.0f;
         var qnhAlt = (gpsAltFt + correction).toNumber();
         return ["ALT QNH", qnhAlt.toString(), "ft"];
     }
 
-    // Combined GPS + QNH: returns 5-element array
-    static function getGpsQnhAlt(posInfo, hasGps, qnhHpa) {
-        var gpsData = getGpsAlt(posInfo, hasGps);
-        var qnhData = getQnhAlt(posInfo, hasGps, qnhHpa);
+    static function getGpsQnhAlt(posInfo, hasGps, qnhHpa, geoidM) {
+        var gpsData = getGpsAlt(posInfo, hasGps, geoidM);
+        var qnhData = getQnhAlt(posInfo, hasGps, qnhHpa, geoidM);
         return ["GPS", gpsData[1], "QNH", qnhData[1], "ft"];
     }
 

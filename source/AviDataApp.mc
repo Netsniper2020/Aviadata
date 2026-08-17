@@ -3,7 +3,6 @@ using Toybox.WatchUi as Ui;
 using Toybox.Position;
 using Toybox.System;
 
-// Data field type constants — match settings list values
 enum {
     DF_NONE = 0,
     DF_GPS_ALT = 1,
@@ -23,7 +22,6 @@ enum {
     DF_DENSITY_ALT = 15
 }
 
-// Slot property keys ordered: P1HG..P4BD, TOP, BOT
 var SLOT_KEYS = [
     "slotP1HG", "slotP1HD", "slotP1BG", "slotP1BD",
     "slotP2HG", "slotP2HD", "slotP2BG", "slotP2BD",
@@ -42,11 +40,13 @@ class AviDataApp extends Application.AppBase {
     }
 
     function onStart(state) {
+        // Start GPS immediately — system uses cached ephemeris for hot start
         Position.enableLocationEvents(Position.LOCATION_CONTINUOUS, method(:onPosition) as Method(info as Position.Info) as Void);
     }
 
     function onStop(state) {
-        Position.enableLocationEvents(Position.LOCATION_DISABLE, method(:onPosition) as Method(info as Position.Info) as Void);
+        // Don't disable GPS here — let the system clean up.
+        // This preserves ephemeris cache for faster re-acquisition.
     }
 
     function onPosition(info as Position.Info) as Void {

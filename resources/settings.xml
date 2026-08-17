@@ -10,6 +10,10 @@
             <settingConfig type="boolean"/>
         </setting>
 
+        <setting propertyKey="@Properties.geoidHeight" title="Hauteur géoïde (m)">
+            <settingConfig type="numeric" min="0" max="100"/>
+        </setting>
+
         <setting propertyKey="@Properties.slotP1HG" title="Page 1 - Haut Gauche">
             <settingConfig type="list">
                 <listEntry value="0">Aucun</listEntry>

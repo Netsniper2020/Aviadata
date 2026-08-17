@@ -21,7 +21,7 @@ class PageDelegate extends Ui.BehaviorDelegate {
             _view.prevPage();
             return true;
         }
-        return false;
+        return true; // consume all swipes
     }
 
     function onTap(clickEvent) {
@@ -49,8 +49,10 @@ class PageDelegate extends Ui.BehaviorDelegate {
         return false;
     }
 
+    // Back button = previous page, NOT exit
+    // User exits via system menu (long press hardware button)
     function onBack() {
-        System.exit();
+        _view.prevPage();
         return true;
     }
 

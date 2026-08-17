@@ -21,5 +21,6 @@
         <property id="slotBOT" type="number">0</property>
         <property id="qnhValue" type="number">1013</property>
         <property id="showTrackTop" type="boolean">true</property>
+        <property id="geoidHeight" type="number">47</property>
     </properties>
 </resources>
